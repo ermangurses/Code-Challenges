@@ -24,10 +24,9 @@ class LinkedList{
         bool     insertInOrder(DataType dataIn); // Insert data in order
         void     printLinkedList(); // Print the entire LinkedList
         bool     remove(DataType dataOut); // Remove specific data
-        DataType retrive(int location); // Retrieve copy of data
         bool     search(DataType dataIn); // Search linkedList
     private:
-        Node *head;
+        Node * head;
         int size;
         void copyLinkedList(const LinkedList & otherList); // Copy linkedList 
 };

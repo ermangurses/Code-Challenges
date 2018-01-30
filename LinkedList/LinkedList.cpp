@@ -19,12 +19,19 @@ LinkedList<DataType>::LinkedList(){
   Destructor
 
 */
-
-
 template <class DataType>
 LinkedList<DataType>::~LinkedList(){
-
-
+    Node * iter = head;
+    Node * temp = head;
+    while(iter != NULL){
+      
+        iter = iter->next;
+        delete temp;
+        temp = iter;
+        size--;
+        cout<<size<<endl;
+    }
+    head = NULL;
 }
 
 /*
@@ -75,7 +82,6 @@ bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
 
     // 1) LinkedList is empty
     if(head == NULL){
-
         head = newNode;        
         newNode->next = NULL;
         size++;
@@ -137,15 +143,20 @@ bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
 */
 template<class DataType>
 void LinkedList<DataType>::printLinkedList(){
-
-        Node * iter = head;
-
-        while(iter->next != NULL){
-
-            cout<<iter->dataIn<<endl;
-            iter = iter->next; 
+        
+        Node * iter;
+        if(head == NULL){
+             
+            cout<<"LinkedList is empty!"<<endl;
+            return;
+        }else{
+            iter = head;
+            while(iter != NULL){
+             
+                cout<<iter->dataIn<<endl;
+                iter = iter->next;
+            }
         }
-        cout<<iter->dataIn<<endl;
 }
 
 /*

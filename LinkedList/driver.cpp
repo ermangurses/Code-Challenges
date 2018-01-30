@@ -9,7 +9,8 @@ int main(){
 
   LinkedList<int> * linkedList = new LinkedList<int>();
   int array[SIZE] = {6,1,2,3,5,4,5,6,7,10,8,10,11,3,4,0};
-  
+ 
+
   for(int i = 0; i < SIZE; i++){
  
       cout<<i<<": "<<array[i]<<"--->"<<linkedList->insertInOrder(array[i])<<endl;
@@ -54,5 +55,11 @@ int main(){
   cout<<"Search  of 4 "<<linkedList->search(4)<<endl;
   cout<<"Search  of 10 "<<linkedList->search(10)<<endl;
   cout<<"Search  of 200 "<<linkedList->search(200)<<endl;
+  
+  delete linkedList;
+  
+  cout<<"Is Empty: "<<linkedList->isEmpty()<<endl;
+  cout<<"Size: "<<linkedList->sizeOf()<<endl;
+  linkedList->printLinkedList();
  return 0;
 }
