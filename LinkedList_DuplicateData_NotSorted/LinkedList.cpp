@@ -226,3 +226,36 @@ void LinkedList<DataType>::printLinkedList(){
         iter = iter->next;
     }
 }
+template<class DataType>
+bool LinkedList<DataType>::removeDuplicates(){
+
+    if(head == NULL || head->next == NULL){
+
+      return false;
+    }
+    
+    Node * iter1 = head;
+    Node * iter2 = head;
+    int count = 0;   
+    while(iter1->next != NULL){
+        
+        while(iter2->next != NULL){
+           
+            if(iter2->next->dataIn == iter1->dataIn){
+ 
+                Node * temp = iter2->next;
+                iter2->next = iter2->next->next;
+                delete temp;
+                temp = NULL;
+            }else{
+                iter2 = iter2->next;
+            }           
+        }
+        iter1 = iter1->next;
+        if(iter1 == NULL){
+            break;
+        }
+        iter2 = iter1;
+    }
+    return true;
+}

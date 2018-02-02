@@ -23,8 +23,10 @@ struct Node{
         bool removeHead();
         bool removeTail();
         bool remove(DataType dataOut);
+        bool removeDuplicates();
         bool search(DataType dataSearch);
         void printLinkedList();
+        
     private:
         Node * head;
    
