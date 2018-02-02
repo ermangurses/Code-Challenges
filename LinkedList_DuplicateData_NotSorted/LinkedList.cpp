@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include <unordered_set>
 
 
 
@@ -256,6 +257,46 @@ bool LinkedList<DataType>::removeDuplicates(){
             break;
         }
         iter2 = iter1;
+    }
+    return true;
+}
+/*
+
+remove Duplicates Using Hash
+
+*/
+template<class DataType>
+bool LinkedList<DataType>::removeDuplicatesUsingHash(){
+
+    unordered_set<DataType> hashSet;
+    typename  unordered_set<DataType>::const_iterator cIter;
+
+    // Check wheter LL is empty or not
+    if (head == NULL){
+        return false; 
+    }
+    Node * iter = head;
+     
+    // Insert the first element of the 
+    hashSet.insert(head->dataIn);
+   
+    while(iter->next != NULL){
+         
+        cIter = hashSet.find(iter->next->dataIn);
+        
+        // If there is no data in the set, insert it
+        if(cIter == hashSet.end()){
+
+            hashSet.insert(iter->next->dataIn); 
+            iter = iter->next;    
+
+        }else{
+            // If there is data, which means duplicate data
+            
+            Node * temp = iter->next;
+            iter->next = iter->next->next;
+            delete temp;
+        }
     }
     return true;
 }

@@ -24,6 +24,7 @@ struct Node{
         bool removeTail();
         bool remove(DataType dataOut);
         bool removeDuplicates();
+        bool removeDuplicatesUsingHash();
         bool search(DataType dataSearch);
         void printLinkedList();
         

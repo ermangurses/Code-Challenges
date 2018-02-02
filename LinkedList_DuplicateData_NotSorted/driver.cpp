@@ -79,7 +79,7 @@ int main(){
   linkedList->printLinkedList();
   cout<<endl<<endl;
   
-  linkedList->removeDuplicates();
+  linkedList->removeDuplicatesUsingHash();
  
   cout<<"LinkedList is here!!!"<<endl;
   linkedList->printLinkedList();
