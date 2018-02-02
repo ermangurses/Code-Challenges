@@ -1,3 +1,9 @@
+/****************************************
+-- Singly LinkedList
+-- Unsorted LinkedList
+-- Does allow duplicate data
+****************************************/
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 

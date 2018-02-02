@@ -1,8 +1,6 @@
 #include "LinkedList.h"
 #include <unordered_set>
 
-
-
 /*
 
 
@@ -185,7 +183,14 @@ bool LinkedList<DataType>::remove(DataType dataOut){
         return false;
     }
 }
+/*
 
+
+  Search operation given data "dataSearch"
+
+
+
+*/
 template<class DataType>
 bool LinkedList<DataType>::search(DataType dataSearch){
 
@@ -211,6 +216,13 @@ bool LinkedList<DataType>::search(DataType dataSearch){
            return false;
     }  
 }
+/*
+
+
+ Print the linkedList
+
+
+*/
 template<class DataType>
 void LinkedList<DataType>::printLinkedList(){
 
