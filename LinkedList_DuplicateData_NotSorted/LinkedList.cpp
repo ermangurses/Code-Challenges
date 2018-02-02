@@ -227,6 +227,14 @@ void LinkedList<DataType>::printLinkedList(){
         iter = iter->next;
     }
 }
+/*
+
+
+ remove duplicates from LL
+ The time complexity is O(N^2)
+
+
+*/
 template<class DataType>
 bool LinkedList<DataType>::removeDuplicates(){
 
@@ -263,6 +271,7 @@ bool LinkedList<DataType>::removeDuplicates(){
 /*
 
 remove Duplicates Using Hash
+Time complexity is O(N) which is linear
 
 */
 template<class DataType>
