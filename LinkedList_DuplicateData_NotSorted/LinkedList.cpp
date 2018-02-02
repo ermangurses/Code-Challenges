@@ -30,7 +30,7 @@ LinkedList<DataType>::~LinkedList(){
 
     while(iter != NULL){
         
-        iter = iter-next;
+        iter = iter->next;
         delete temp;
         temp = iter;
     }
@@ -76,7 +76,8 @@ bool LinkedList<DataType>::insertTail(DataType dataNew){
     
     if(head == NULL){
 
-      head = newNode;
+        head = newNode;
+      return true;
     }
  
     Node * iter = head;
@@ -118,26 +119,26 @@ Remove tail
 template<class DataType>
 bool LinkedList<DataType>::removeTail(){
 
-   if(head == NULL){
+    if(head == NULL){
 
-     return false;
-   }
+      return false;
+    }
 
-   if(head->next == NULL){
+    if(head->next == NULL){
+        delete head;
+        head = NULL;
+      return true;
+    }
 
-       delete head;
-     return true;
-   }
+    Node * iter = head;
 
-   Node * iter = head;
-
-   while(iter->next->next != NULL){
+    while(iter->next->next != NULL){
    
-       iter = iter->next;
-   }
-
-   delete iter->next;
-   iter->next = NULL;
+        iter = iter->next;
+    }
+    delete iter->next;
+    iter->next = NULL;
+  return true;
 }
 
 /*
@@ -164,7 +165,7 @@ bool LinkedList<DataType>::remove(DataType dataOut){
     }
   
     while(iter->next != NULL && iter->next->dataIn != dataOut){
-        iter = iter-next;                        
+        iter = iter->next;                        
     }
 
     if(iter->next != NULL && iter->next->dataIn == dataOut){
