@@ -1,10 +1,10 @@
-#include "LinkedList.h"
+#include <exception>
 #include <unordered_set>
-
+#include "LinkedList.h"
 /*
 
 
-Constructor
+Default Constructor
 
 
 */
@@ -33,6 +33,7 @@ LinkedList<DataType>::~LinkedList(){
         delete temp;
         temp = iter;
     }
+    head = NULL;
 }
 /*
 
@@ -320,4 +321,58 @@ bool LinkedList<DataType>::removeDuplicatesUsingHash(){
         }
     }
     return true;
+}
+/*
+
+
+--- nthToLast ---
+
+It finds n th element to the last and returns its value
+
+For instance:
+
+ - 9 nodes below form a linked list below,
+ - We numbered them increasing  order from head
+ - if "n" is 3, we need to return 7 th element 
+   from the list                       
+ - if "n" is 1, we need to return the last element
+   from the list
+
+ head                k
+   |                 3  2  1
+   |
+   1  2  3  4  5  6  7  8  9
+   O--O--O--O--O--O--O--O--O            
+*/
+
+template<class DataType> 
+DataType LinkedList<DataType>::nthToLast(int n){
+
+    if(head == NULL){
+        //non-existent element so we terminate
+        cout<<"Empty linkedlist"<<endl;
+        terminate();
+    }
+    Node * iter1 = head;
+    Node * iter2 = head;
+    
+    int counter = 1;
+     
+    while(counter < n){
+        
+        if(iter2->next == NULL){
+        
+            cout<<n<<" is larger than the size of linkedlist"<<endl;
+            terminate();
+        }
+        counter++;
+        iter2 = iter2->next;
+    }
+
+    while(iter2->next != NULL){
+
+        iter1 = iter1->next;
+        iter2 = iter2->next;
+    }
+    return iter1->dataIn;
 }

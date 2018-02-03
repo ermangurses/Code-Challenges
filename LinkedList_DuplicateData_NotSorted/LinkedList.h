@@ -1,9 +1,3 @@
-/****************************************
--- Singly LinkedList
--- Unsorted LinkedList
--- Does allow duplicate data
-****************************************/
-
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
@@ -16,9 +10,9 @@ using namespace std;
 template<class DataType>
 class LinkedList{
 
-struct Node{
-  DataType dataIn;
-  Node * next;
+struct Node {
+    DataType dataIn;
+    Node * next;
 };
 
     public:
@@ -32,10 +26,11 @@ struct Node{
         bool removeDuplicates();
         bool removeDuplicatesUsingHash();
         bool search(DataType dataSearch);
+        DataType nthToLast(int n);
         void printLinkedList();
         
     private:
-        Node * head;
-   
+       Node * head;
+          
 };
 #endif

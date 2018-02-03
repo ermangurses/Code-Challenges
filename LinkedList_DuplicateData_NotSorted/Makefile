@@ -4,6 +4,6 @@ driver.o: driver.cpp
 	g++ -c driver.cpp -o driver.o
 LinkedList.o: LinkedList.cpp LinkedList.h
 	g++ -c LinkedList.cpp -o LinkedList.o
-c:
+clear:
 	rm *.o driver
 	 
