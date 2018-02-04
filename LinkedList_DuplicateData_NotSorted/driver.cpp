@@ -100,6 +100,10 @@ int main(){
   //temp  = linkedList->nthToLast(n);
   //cout<<"The value of the "<<n<<" th closest element to the last is: "<<temp<<endl;
 
+
+  linkedList->deleteMiddleNode();
+  linkedList->printLinkedList();
+  
   delete linkedList;
   
 return 0;

@@ -28,9 +28,10 @@ struct Node {
         bool search(DataType dataSearch);
         DataType nthToLast(int n);
         void printLinkedList();
-        
+        bool deleteMiddleNode();
     private:
        Node * head;
+       bool deleteNode(Node * node); 
           
 };
 #endif

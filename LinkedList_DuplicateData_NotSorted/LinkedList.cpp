@@ -376,3 +376,63 @@ DataType LinkedList<DataType>::nthToLast(int n){
     }
     return iter1->dataIn;
 }
+
+/*
+
+ *** deleteMiddleNode*** 
+ 
+ It is a wrapper function to send pointer to the deleteNode
+ 
+
+*/
+template<class DataType>
+bool LinkedList<DataType>::deleteMiddleNode(){
+ 
+    if(head == NULL || head->next == NULL){
+
+        return false;
+    }
+    Node * iter = head;
+        
+    const int middle = 5;
+    int counter = 1;
+
+    while(counter < middle){ 
+  
+       // Check if the middle number larger than size of linked list
+       if(iter->next == NULL){
+             cout<<middle<<" is larger than the size of linkedlist"<<endl;
+             return false;
+       }
+  
+       counter++;
+       iter = iter->next;
+    }
+    bool result = deleteNode(iter);    
+    return result;
+} 
+/*
+
+***deleteNode***
+
+It deletes the node that has only access to that node
+so no head access in here
+*/
+template<class DataType>
+bool LinkedList<DataType>::deleteNode(Node * node){
+    Node * iter = node;
+
+    // Copy the element to its previous neighbor
+    while(iter->next->next != NULL){
+       iter->dataIn = iter->next->dataIn;
+       iter = iter->next;
+    }
+    
+    // do the last copy from tail to tail-1
+    iter->dataIn = iter->next->dataIn;   
+   
+    // delete the tail
+    delete iter->next;
+    iter->next = NULL;
+  return true;
+}
