@@ -338,7 +338,7 @@ For instance:
  - if "n" is 1, we need to return the last element
    from the list
 
- head                k
+ head                n
    |                 3  2  1
    |
    1  2  3  4  5  6  7  8  9
