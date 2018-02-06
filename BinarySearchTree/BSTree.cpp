@@ -1,0 +1,200 @@
+#include <iostream>
+#include "BSTree.h"
+
+using namespace std;
+
+/**************************************************
+
+
+    Default Constructor
+
+
+**************************************************/
+BSTree::BSTree(){
+
+    root  = NULL;
+}
+/**************************************************
+
+
+    Destructor
+
+
+***************************************************/
+BSTree::~BSTree(){
+
+    destroy_Tree();
+
+}
+
+/***************************************************
+
+ 
+bool insert(DataType keyIn);
+
+
+***************************************************/
+void BSTree::insert(int keyIn){
+
+    if(root != NULL){
+        insert(keyIn,root);
+    }else{
+        root = new Node;
+        root->key = keyIn;
+        root->left = NULL;
+        root->right = NULL;
+    }
+}
+
+
+/***************************************************
+ 
+  
+ void insert(DataType keyIn, Node * leaf);
+ 
+
+***************************************************/
+void BSTree::insert(int keyIn, Node * leaf){
+
+    if( keyIn < leaf->key){
+     
+        if(leaf->left != NULL){
+
+            insert(keyIn,leaf->left);
+        }else{
+           
+            leaf->left = new Node;
+            leaf->left->key = keyIn;
+            leaf->left->left = NULL; 
+            leaf->left->right  = NULL;
+        }     
+    }else if(keyIn >= leaf->key){
+          
+        if(leaf->right != NULL){
+      
+            insert(keyIn,leaf->right);
+        }else{
+            leaf->right = new Node;
+            leaf->right->key = keyIn;
+            leaf->right->left = NULL;
+            leaf->right->right= NULL;
+        }
+    }
+}
+
+
+
+/***************************************************
+
+
+Node * remove(DataType keyOut);
+ 
+
+***************************************************/
+Node * BSTree::remove(int keyOut){
+
+
+ return NULL;
+}
+
+
+/***************************************************
+
+
+Node * search(DataType keySearch);
+
+
+***************************************************/
+Node * BSTree::search(int keySearch){
+
+    return searchKey(keySearch, root);
+
+}
+
+/***************************************************
+ 
+ 
+ Node * search(DataType keySearch, Node * leaf);
+ 
+ 
+***************************************************/
+Node * BSTree::searchKey(int keySearch, Node * leaf){
+ 
+     if(leaf != NULL){
+
+         if(keySearch == leaf->key){
+            
+             return leaf;
+         }
+         if(keySearch < leaf->key){
+         
+             return searchKey(keySearch,leaf->left);             
+
+         }else{
+
+             return searchKey(keySearch,leaf->right);
+         }
+     }else{
+
+         return NULL;    
+     }    
+ 
+}
+/***************************************************
+
+
+void destroyTree();
+
+
+***************************************************/
+void BSTree::destroy_Tree(){
+
+    destroyTree(root);
+}
+
+/***************************************************
+ 
+ 
+ void printTree(Node * leaf);
+ 
+ 
+***************************************************/
+void BSTree::printTree(){
+ 
+     printTree(root);
+     
+}
+/***************************************************
+
+
+void printTree(Node * leaf);
+
+
+***************************************************/
+void BSTree::printTree(Node * leaf){
+
+    if(leaf != NULL){
+
+        cout<<leaf->key<<endl;
+        printTree(leaf->left);
+        printTree(leaf->right);
+
+    }
+
+}
+/***************************************************
+
+
+void destroy_tree(Node * leaf);
+
+
+***************************************************/
+void BSTree::destroyTree(Node * leaf){   
+     if(leaf != NULL){
+    
+        destroyTree(leaf->left);
+        destroyTree(leaf->right);
+        delete leaf;
+    }
+
+}
