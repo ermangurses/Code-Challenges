@@ -1,11 +1,13 @@
 #include "LinkedList.h"
 
 
-/*
-
-  Default Costructor 
-
-*/
+/******************************************************************************
+//
+//
+//  Default Costructor 
+//
+//
+*******************************************************************************/
 
 using namespace std;
 
@@ -16,11 +18,13 @@ LinkedList<T>::LinkedList(){
       size = 0; 
 }
 
-/*
-
-  Destructor
-
-*/
+/******************************************************************************
+//
+//
+//  Destructor
+//
+//
+*******************************************************************************/
 template <class T>
 LinkedList<T>::~LinkedList(){
     Node * iter = head;
@@ -35,43 +39,47 @@ LinkedList<T>::~LinkedList(){
     head = NULL;
 }
 
-/*
-
-  The size of the link 
-
-*/
+/******************************************************************************
+//
+//
+//  The size of the link 
+//
+//
+*******************************************************************************/
 template <class T>
 int LinkedList<T>::sizeOf(){
 
     return size;
 }
 
-/*
-
-  Is empty
-
-*/
+/******************************************************************************
+//
+//
+//  Is empty
+//
+//
+*******************************************************************************/
 template <class T>
 bool LinkedList<T>::isEmpty(){
 
     return (size == 0);
 }
 
-/*
-
-  Insert in order
-
-  There are four cases:
-  
-  1) LinkedList is empty
-  2) Insert head
-  3) Insert tail
-  4) Insert middle
-   
-  *** Do not allow duplicate data ***
-  return true if the newNode is interted
-  return false if the data of newNode is already exist in the linkedlist
-*/
+/******************************************************************************
+//
+//  Insert in order
+//
+//  There are four cases:
+//  
+//  1) LinkedList is empty
+//  2) Insert head
+//  3) Insert tail
+//  4) Insert middle
+//   
+//  *** Does not allow duplicate data ***
+//  return true if the newNode is interted
+//  return false if the data of newNode is already exist in the linkedlist
+*******************************************************************************/
 
 template <class T>
 bool LinkedList<T>::insertInOrder(T newDataIn){
@@ -135,46 +143,45 @@ bool LinkedList<T>::insertInOrder(T newDataIn){
      size++;
   return newNode;
 }
-/*
-
-
- PrintLinkedList
-
-
-*/
+/******************************************************************************
+//
+//
+// PrintLinkedList
+//
+//
+*******************************************************************************/
 template<class T>
 void LinkedList<T>::printLinkedList(){
-        
-        Node * iter;
-        if(head == NULL){
-             
-            cout<<"LinkedList is empty!"<<endl;
-            return;
-        }else{
-            iter = head;
-            while(iter != NULL){
-             
-                cout<<iter->dataIn<<endl;
-                iter = iter->next;
-            }
+
+    Node * iter;
+    if(head == NULL){
+    
+        cout<<"LinkedList is empty!"<<endl;
+        return;
+    }else{
+        iter = head;
+        while(iter != NULL){  
+            cout<<iter->dataIn<<endl;
+            iter = iter->next;
         }
+    }
 }
 
-/*
-
- Delete a node from linkedlist
- 
- return true 
-     if it is deleted
- return false 
-     if it is not deleted
- 
- 1) Linkedlist is empty
- 2) Delete from head
- 3) Delete from middle
- 4) Delete from tail
- 
-*/
+/******************************************************************************
+//
+// Delete a node from linkedlist
+// 
+// return true 
+//     if it is deleted
+// return false 
+//     if it is not deleted
+// 
+// 1) Linkedlist is empty
+// 2) Delete from head
+// 3) Delete from middle
+// 4) Delete from tail
+// 
+*******************************************************************************/
 template<class T>
 bool LinkedList<T>::remove(T dataOut){
 
@@ -215,16 +222,16 @@ bool LinkedList<T>::remove(T dataOut){
         return false;
     }
 }
-/*
-
-    search data in the linkedList
-
-    return true 
-	if the data is in the linkedList
-    return false 
-	if the data is not in the linkedlist
-
-*/
+/******************************************************************************
+//
+//    search data in the linkedList
+//
+//    return true 
+//	if the data is in the linkedList
+//    return false 
+//	if the data is not in the linkedlist
+//
+*******************************************************************************/
 template<class T>
 bool LinkedList<T>::search(T dataSearch){
   
