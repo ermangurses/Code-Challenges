@@ -3,7 +3,7 @@
 // -- Sorted LinkedList
 // -- Does not allow duplicate data
 *****************************************************************************/
-*
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
