@@ -8,7 +8,17 @@
 # define SIZE 16
 
 using namespace std;
+/******************************************************************************
 
+  *** bool openInputFile(ifstream & inFile) ***
+  
+  opens data.txt file 
+  
+  returns true if the file is opened succesfully
+  
+  return false if it fails
+                       
+******************************************************************************/
 bool openInputFile(ifstream & inFile) 
 {
    inFile.open("data.txt");
@@ -25,8 +35,14 @@ bool openInputFile(ifstream & inFile)
 int main(){
 
   LinkedList<int> * linkedList = new LinkedList<int>();
+
   int array[SIZE] = {6,1,2,3,5,4,5,6,7,10,8,10,11,3,4,0};
- 
+
+  /******************************************************************************
+
+    Testing the functions in LinkedList Class
+
+  ******************************************************************************/ 
 
   for(int i = 0; i < SIZE; i++){
  
@@ -79,6 +95,12 @@ int main(){
   cout<<"Size: "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
 
+
+  /******************************************************************************
+
+    Do the operations in linked list using input.txt file
+   
+  ******************************************************************************/
   cout<<"**** File Operations Start ****"<<endl;
   LinkedList<int> * linkedList1 = new LinkedList<int>();
 
