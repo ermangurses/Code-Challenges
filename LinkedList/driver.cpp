@@ -1,9 +1,26 @@
 #include "LinkedList.cpp"
+#include <cstdlib>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <iomanip>
+
 # define SIZE 16
 
 using namespace std;
+
+bool openInputFile(ifstream & inFile) 
+{
+   inFile.open("data.txt");
+   
+   if (!inFile)
+   {
+      cout << "The input File cannot be opened!!!\n";
+
+      return false;
+   }
+   return true;
+}
 
 int main(){
 
@@ -55,11 +72,38 @@ int main(){
   cout<<"Search  of 4 "<<linkedList->search(4)<<endl;
   cout<<"Search  of 10 "<<linkedList->search(10)<<endl;
   cout<<"Search  of 200 "<<linkedList->search(200)<<endl;
-  
+
   delete linkedList;
   
   cout<<"Is Empty: "<<linkedList->isEmpty()<<endl;
   cout<<"Size: "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
+
+  cout<<"**** File Operations Start ****"<<endl;
+  LinkedList<int> * linkedList1 = new LinkedList<int>();
+
+  
+  ifstream inFile;
+  string line;
+  
+  if(!openInputFile(inFile)){
+      return 0;   
+  }  
+
+  getline(inFile, line);
+  
+  cout<<"There will be "<<atoi(line.c_str())<<" elements in the linked list"<<endl;
+
+  getline(inFile, line);
+  stringstream ss(line);
+  string token;
+  
+  while(getline(ss, token, ' ')){
+      linkedList1->insertInOrder(atoi(token.c_str()));
+  }
+  linkedList->printLinkedList();
+   
+
+  
  return 0;
 }

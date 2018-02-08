@@ -7,11 +7,13 @@
 
 */
 
-template <class DataType>
-LinkedList<DataType>::LinkedList(){
+using namespace std;
+
+template <class T>
+LinkedList<T>::LinkedList(){
 
       head = NULL;
-      size = 0;
+      size = 0; 
 }
 
 /*
@@ -19,8 +21,8 @@ LinkedList<DataType>::LinkedList(){
   Destructor
 
 */
-template <class DataType>
-LinkedList<DataType>::~LinkedList(){
+template <class T>
+LinkedList<T>::~LinkedList(){
     Node * iter = head;
     Node * temp = head;
     while(iter != NULL){
@@ -29,7 +31,6 @@ LinkedList<DataType>::~LinkedList(){
         delete temp;
         temp = iter;
         size--;
-        cout<<size<<endl;
     }
     head = NULL;
 }
@@ -39,8 +40,8 @@ LinkedList<DataType>::~LinkedList(){
   The size of the link 
 
 */
-template <class DataType>
-int LinkedList<DataType>::sizeOf(){
+template <class T>
+int LinkedList<T>::sizeOf(){
 
     return size;
 }
@@ -50,8 +51,8 @@ int LinkedList<DataType>::sizeOf(){
   Is empty
 
 */
-template <class DataType>
-bool LinkedList<DataType>::isEmpty(){
+template <class T>
+bool LinkedList<T>::isEmpty(){
 
     return (size == 0);
 }
@@ -72,8 +73,8 @@ bool LinkedList<DataType>::isEmpty(){
   return false if the data of newNode is already exist in the linkedlist
 */
 
-template <class DataType>
-bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
+template <class T>
+bool LinkedList<T>::insertInOrder(T newDataIn){
 
     // Init the key and data
     Node * newNode = new Node;
@@ -85,7 +86,7 @@ bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
         head = newNode;        
         newNode->next = NULL;
         size++;
-      return true;
+      return newNode;
     }
   
     // 2) Insert newNode to head 
@@ -96,7 +97,7 @@ bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
         newNode->next = iter;
         head = newNode;
         size++;
-      return true;
+      return newNode;
     } else if(iter->dataIn == newDataIn){
     
       // duplicated data 
@@ -132,7 +133,7 @@ bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
      }
     
      size++;
-  return true;
+  return newNode;
 }
 /*
 
@@ -141,8 +142,8 @@ bool LinkedList<DataType>::insertInOrder(DataType newDataIn){
 
 
 */
-template<class DataType>
-void LinkedList<DataType>::printLinkedList(){
+template<class T>
+void LinkedList<T>::printLinkedList(){
         
         Node * iter;
         if(head == NULL){
@@ -166,7 +167,7 @@ void LinkedList<DataType>::printLinkedList(){
  return true 
      if it is deleted
  return false 
-    if it is not deleted
+     if it is not deleted
  
  1) Linkedlist is empty
  2) Delete from head
@@ -174,8 +175,8 @@ void LinkedList<DataType>::printLinkedList(){
  4) Delete from tail
  
 */
-template<class DataType>
-bool LinkedList<DataType>::remove(DataType dataOut){
+template<class T>
+bool LinkedList<T>::remove(T dataOut){
 
     if (head == NULL){
         return false;
@@ -224,8 +225,8 @@ bool LinkedList<DataType>::remove(DataType dataOut){
 	if the data is not in the linkedlist
 
 */
-template<class DataType>
-bool LinkedList<DataType>::search(DataType dataSearch){
+template<class T>
+bool LinkedList<T>::search(T dataSearch){
   
     if (head == NULL){
         return false;

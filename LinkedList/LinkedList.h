@@ -10,30 +10,28 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
-using namespace std;
 
-template <class DataType>
+
+template <class T>
 class LinkedList{
 
-    struct Node{
-        DataType  dataIn;
-        Node     *next;
-    }; 
-
+    private:
+        struct Node{
+            T      dataIn;
+            Node * next;
+        };
+        Node * head;
+        int    size;
     public:
         LinkedList(); // Default Contructor
        ~LinkedList(); // Destructor
         
-
-        int      sizeOf();
-        bool     isEmpty();
-        bool     insertInOrder(DataType dataIn); // Insert data in order
-        void     printLinkedList(); // Print the entire LinkedList
-        bool     remove(DataType dataOut); // Remove specific data
-        bool     search(DataType dataIn); // Search linkedList
-    private:
-        Node * head;
-        int size;
-        void copyLinkedList(const LinkedList & otherList); // Copy linkedList 
+typedef Node * iterator;
+         int   sizeOf();
+        bool   isEmpty();
+        bool   insertInOrder(T dataIn); // Insert data in order
+        void   printLinkedList();       // Print the entire LinkedList
+        bool   remove(T dataOut);       // Remove specific data
+        bool   search(T dataSearch);    // Search linkedList
 };
 #endif
