@@ -89,7 +89,9 @@ int main(){
   cout<<"Search  of 4 "<<linkedList->search(4)<<endl;
   cout<<"Search  of 10 "<<linkedList->search(10)<<endl;
   cout<<"Search  of 200 "<<linkedList->search(200)<<endl;
-
+ 
+  cout<<endl<<endl; 
+  cout<<"Destructor is called!!!"<<endl;
   delete linkedList;
   
   cout<<"Is Empty: "<<linkedList->isEmpty()<<endl;
@@ -102,6 +104,7 @@ int main(){
     Do the operations in linked list using input.txt file
    
   ******************************************************************************/
+  cout<<endl<<endl;
   cout<<"**** File Operations Start ****"<<endl;
   LinkedList<int> * linkedList1 = new LinkedList<int>();
 

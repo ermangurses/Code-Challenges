@@ -29,10 +29,11 @@ class LinkedList{
          int   sizeOf();
         bool   isEmpty();
         void   insertInOrderOld(T dataIn); // Insert data in order
-        void   insertInOrder(T dataIn); // Insert data in order
-        void   printLinkedList();       // Print the entire LinkedList
+        void   insertInOrder(T dataIn);    // Insert data in order
+        void   printLinkedList();          // Print the entire LinkedList
         void   removeOld(T dataOut);       // Remove specific data
-        void   remove(T dataOut);       // Remove specific data
-        bool   search(T dataSearch);    // Search linkedList
+        void   remove(T dataOut);          // Remove specific data
+        bool   searchOld(T dataSearch);    // Search linkedList
+        bool   search(T dataSearch);       // Search linkedList
 };
 #endif

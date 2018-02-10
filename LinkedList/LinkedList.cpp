@@ -34,7 +34,7 @@ LinkedList<T>::~LinkedList(){
         iter = iter->next;
         delete temp;
         temp = iter;
-        size--;
+        --size;
     }
     head = NULL;
 }
@@ -93,7 +93,7 @@ void LinkedList<T>::insertInOrderOld(T newDataIn){
     if(head == NULL){
         head = newNode;
         newNode->next = NULL;
-        size++;
+        ++size;
         return;
     }
     // 2) Insert newNode to head 
@@ -102,7 +102,7 @@ void LinkedList<T>::insertInOrderOld(T newDataIn){
     if(iter->dataIn > newDataIn){
         newNode->next = iter;
         head = newNode;
-        size++;
+        ++size;
         return;
     } else if(iter->dataIn == newDataIn){
     
@@ -136,7 +136,7 @@ void LinkedList<T>::insertInOrderOld(T newDataIn){
        iter->next = newNode;
        newNode->next = temp;
      }
-     size++;
+     ++size;
      return;
 }
 /******************************************************************************
@@ -166,11 +166,11 @@ void LinkedList<T>::insertInOrder(T newDataIn){
     if(!head){        
         head = newNode;
         newNode->next = NULL;
-        size++;
+        ++size;
     }else{
         iter = head;
         previous = NULL;
-        while(iter != NULL && iter->dataIn < newDataIn){
+        while(iter != NULL && newDataIn > iter->dataIn){
            
             previous = iter;
             iter = iter->next;
@@ -186,7 +186,7 @@ void LinkedList<T>::insertInOrder(T newDataIn){
         if(previous == NULL){
             newNode->next = head;
             head = newNode; 
-            size++;
+            ++size;
             return;   
         }
 
@@ -197,7 +197,7 @@ void LinkedList<T>::insertInOrder(T newDataIn){
         } else { // Insert middle
             newNode->next = iter;
         }       
-        size++; 
+        ++size; 
     }
 }
 /******************************************************************************
@@ -250,12 +250,12 @@ void LinkedList<T>::remove(T dataOut){
         iter = head;
         previous = NULL;
          
-        while(iter != NULL && iter->dataIn < dataOut){
+        while(iter != NULL && dataOut > iter->dataIn){
         
             previous = iter;
             iter = iter->next;
         }        
-        if(iter != NULL && iter->dataIn == dataOut){
+        if(iter != NULL && dataOut == iter->dataIn){
            
             //2) Delete from head
             if(previous == NULL){
@@ -269,14 +269,13 @@ void LinkedList<T>::remove(T dataOut){
                     
                     previous->next = iter->next; 
                     delete iter;
-                    previous->next = NULL;   
-              
                 }else{
                 // 4) Delete from tail
                     delete iter;
                     previous->next = NULL;
                 }
             }
+            --size;
         }                      
     }
 }
@@ -301,7 +300,7 @@ void LinkedList<T>::removeOld(T dataOut){
     if(iter->dataIn == dataOut){ 
         head = iter->next;    
         delete iter;
-        size--;
+        --size;
       return;
     }   
 
@@ -324,12 +323,49 @@ void LinkedList<T>::removeOld(T dataOut){
             delete iter->next;
             iter->next = NULL;
         }
-        size--;
+        --size;
     }
 }
 /******************************************************************************
 //
-//    search data in the linkedList
+//    search data in the linkedList  *** new version with previous pointer ***
+//
+//    return true 
+//	if the data is in the linkedList
+//    return false 
+//	if the data is not in the linkedlist
+//
+//    1) Linkedlist is empty
+//    2) Find in head
+//    3) Find in middle
+//    4) Find in tail
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::search(T dataSearch){
+  
+    // 1) Linkedlist is empty
+    if (!head){
+        return false;
+    } else {
+        
+        Node * iter = head;
+
+        while(iter != NULL && iter->dataIn < dataSearch){
+            
+            iter = iter->next;
+        }
+        // 2) Find in head
+        // 3) Find in middle
+        // 4) Find in tail
+        if(iter != NULL and iter->dataIn == dataSearch){
+            return true;
+         }
+         return false;
+    }
+}
+/******************************************************************************
+//
+//    search data in the linkedList *** old version ***
 //
 //    return true 
 //	if the data is in the linkedList
@@ -338,7 +374,7 @@ void LinkedList<T>::removeOld(T dataOut){
 //
 *******************************************************************************/
 template<class T>
-bool LinkedList<T>::search(T dataSearch){
+bool LinkedList<T>::searchOld(T dataSearch){
   
     if (head == NULL){
         return false;
@@ -360,3 +396,4 @@ bool LinkedList<T>::search(T dataSearch){
        return false;
     }
 }
+
