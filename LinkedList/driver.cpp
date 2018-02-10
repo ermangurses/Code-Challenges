@@ -5,7 +5,7 @@
 #include <sstream>
 #include <iomanip>
 
-# define SIZE 16
+# define SIZE 20
 
 using namespace std;
 /******************************************************************************
@@ -36,7 +36,7 @@ int main(){
 
   LinkedList<int> * linkedList = new LinkedList<int>();
 
-  int array[SIZE] = {6,1,2,3,5,4,5,6,7,10,8,10,11,3,4,0};
+  int array[SIZE] = {6,1,1,2,0,3,5,4,5,6,9,7,11,10,8,10,11,3,4,0};
 
   /******************************************************************************
 
@@ -58,26 +58,31 @@ int main(){
   linkedList->remove(6);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
-  
+  cout<<endl<<endl;
+ 
   cout<<"Remove 0: "<<endl;
   linkedList->remove(0);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
+  cout<<endl<<endl;
   
   cout<<"Remove 11: "<<endl;
   linkedList->remove(11);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
+  cout<<endl<<endl;
   
   cout<<"Remove 1: "<<endl;
   linkedList->remove(1);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
+  cout<<endl<<endl;
   
   cout<<"Remove 200: "<<endl;
   linkedList->remove(200);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
+  cout<<endl<<endl;
   
   cout<<"Search  of 6 "<<linkedList->search(6)<<endl;
   cout<<"Search  of 2 "<<linkedList->search(2)<<endl;

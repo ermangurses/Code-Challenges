@@ -64,10 +64,9 @@ bool LinkedList<T>::isEmpty(){
 
     return (size == 0);
 }
-
 /******************************************************************************
 //
-//  Insert in order
+//  Insert in order  *** old version ***
 //
 //  There are four cases:
 //  
@@ -82,7 +81,7 @@ bool LinkedList<T>::isEmpty(){
 *******************************************************************************/
 
 template <class T>
-void LinkedList<T>::insertInOrder(T newDataIn){
+void LinkedList<T>::insertInOrderOld(T newDataIn){
 
 
     // Init the key and data
@@ -139,6 +138,67 @@ void LinkedList<T>::insertInOrder(T newDataIn){
      }
      size++;
      return;
+}
+/******************************************************************************
+//
+//  Insert in order ********* used previous pointer ***********
+//
+//  There are four cases:
+//  
+//  1) LinkedList is empty
+//  2) Insert head
+//  3) Insert tail
+//  4) Insert middle
+//   
+//  *** Does not allow duplicate data ***
+//  return true if the newNode is interted
+//  return false if the data of newNode is already exist in the linkedlist
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::insertInOrder(T newDataIn){
+     
+     Node * iter;
+     Node * previous;
+     Node * newNode = new Node;
+     newNode->dataIn = newDataIn;
+     
+    // 1) Linkedlist is empty
+    if(!head){        
+        head = newNode;
+        newNode->next = NULL;
+        size++;
+    }else{
+        iter = head;
+        previous = NULL;
+        while(iter != NULL && iter->dataIn < newDataIn){
+           
+            previous = iter;
+            iter = iter->next;
+        }
+
+        // Duplicate Data
+        if(iter != NULL && newDataIn == iter->dataIn){
+            delete newNode;
+            return;
+        }
+
+        // 2) Insert head       
+        if(previous == NULL){
+            newNode->next = head;
+            head = newNode; 
+            size++;
+            return;   
+        }
+
+        previous->next = newNode; 
+        // 3) Insert tail
+        if(iter == NULL){
+            newNode->next = NULL;
+        } else { // Insert middle
+            newNode->next = iter;
+        }       
+        size++; 
+    }
 }
 /******************************************************************************
 //

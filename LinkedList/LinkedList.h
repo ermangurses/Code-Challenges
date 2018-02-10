@@ -28,6 +28,7 @@ class LinkedList{
         
          int   sizeOf();
         bool   isEmpty();
+        void   insertInOrderOld(T dataIn); // Insert data in order
         void   insertInOrder(T dataIn); // Insert data in order
         void   printLinkedList();       // Print the entire LinkedList
         void   remove(T dataOut);       // Remove specific data
