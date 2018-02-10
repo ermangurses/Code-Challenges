@@ -141,7 +141,7 @@ void LinkedList<T>::insertInOrderOld(T newDataIn){
 }
 /******************************************************************************
 //
-//  Insert in order ********* used previous pointer ***********
+//  Insert in order *** new version with previous pointer ***
 //
 //  There are four cases:
 //  
@@ -224,14 +224,10 @@ void LinkedList<T>::printLinkedList(){
     }
 }
 
+
 /******************************************************************************
 //
-// Delete a node from linkedlist
-// 
-// return true 
-//     if it is deleted
-// return false 
-//     if it is not deleted
+// remove a node from linkedlist *** new version with previous pointer ***
 // 
 // 1) Linkedlist is empty
 // 2) Delete from head
@@ -241,6 +237,61 @@ void LinkedList<T>::printLinkedList(){
 *******************************************************************************/
 template<class T>
 void LinkedList<T>::remove(T dataOut){
+
+    Node * iter;
+    Node * previous;
+     
+    // 1) Linkedlist is empty
+    if(!head){
+
+        return;
+    }else{
+
+        iter = head;
+        previous = NULL;
+         
+        while(iter != NULL && iter->dataIn < dataOut){
+        
+            previous = iter;
+            iter = iter->next;
+        }        
+        if(iter != NULL && iter->dataIn == dataOut){
+           
+            //2) Delete from head
+            if(previous == NULL){
+
+                head = iter->next;
+                delete iter;
+            } else {
+                
+                // 3) Delete from middle
+                if(iter->next != NULL){
+                    
+                    previous->next = iter->next; 
+                    delete iter;
+                    previous->next = NULL;   
+              
+                }else{
+                // 4) Delete from tail
+                    delete iter;
+                    previous->next = NULL;
+                }
+            }
+        }                      
+    }
+}
+/******************************************************************************
+//
+// remove a node from linkedlist *** old version ***
+//
+// 1) Linkedlist is empty
+// 2) Delete from head
+// 3) Delete from middle
+// 4) Delete from tail
+// 
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::removeOld(T dataOut){
 
     if (head == NULL){
         return;
