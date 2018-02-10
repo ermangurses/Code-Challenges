@@ -82,7 +82,8 @@ bool LinkedList<T>::isEmpty(){
 *******************************************************************************/
 
 template <class T>
-bool LinkedList<T>::insertInOrder(T newDataIn){
+void LinkedList<T>::insertInOrder(T newDataIn){
+
 
     // Init the key and data
     Node * newNode = new Node;
@@ -91,27 +92,24 @@ bool LinkedList<T>::insertInOrder(T newDataIn){
 
     // 1) LinkedList is empty
     if(head == NULL){
-        head = newNode;        
+        head = newNode;
         newNode->next = NULL;
         size++;
-      return newNode;
+        return;
     }
-  
     // 2) Insert newNode to head 
     // newNode becomes a head since
     // the new data is the smallest
     if(iter->dataIn > newDataIn){
-  
         newNode->next = iter;
         head = newNode;
         size++;
-      return newNode;
+        return;
     } else if(iter->dataIn == newDataIn){
     
       // duplicated data 
       delete newNode;
-      return false;
- 
+      return;
     }
    
     // Iterate over linkedlist
@@ -124,7 +122,7 @@ bool LinkedList<T>::insertInOrder(T newDataIn){
      
       // Duplicated data
       delete newNode;
-      return false;
+      return;
     }
 
     // 3) Insert newNode to tail  
@@ -139,9 +137,8 @@ bool LinkedList<T>::insertInOrder(T newDataIn){
        iter->next = newNode;
        newNode->next = temp;
      }
-    
      size++;
-  return newNode;
+     return;
 }
 /******************************************************************************
 //
@@ -183,10 +180,10 @@ void LinkedList<T>::printLinkedList(){
 // 
 *******************************************************************************/
 template<class T>
-bool LinkedList<T>::remove(T dataOut){
+void LinkedList<T>::remove(T dataOut){
 
     if (head == NULL){
-        return false;
+        return;
     }
     Node * iter = head;
     // 1) Delete from head
@@ -194,7 +191,7 @@ bool LinkedList<T>::remove(T dataOut){
         head = iter->next;    
         delete iter;
         size--;
-      return true;
+      return;
     }   
 
     // Go until the dataOut is larger than element of
@@ -217,9 +214,6 @@ bool LinkedList<T>::remove(T dataOut){
             iter->next = NULL;
         }
         size--;
-        return true;
-    }else{
-        return false;
     }
 }
 /******************************************************************************

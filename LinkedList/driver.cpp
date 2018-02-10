@@ -46,41 +46,37 @@ int main(){
 
   for(int i = 0; i < SIZE; i++){
  
-      cout<<i<<": "<<array[i]<<"--->"<<linkedList->insertInOrder(array[i])<<endl;
+      cout<<i<<": "<<array[i]<<"---> is added to the linked list"<<endl;
+      linkedList->insertInOrder(array[i]);
   }
   cout<<endl<<endl;
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
+  linkedList->printLinkedList();
   cout<<endl<<endl;
+  
+  cout<<"Remove 6: "<<endl;
+  linkedList->remove(6);
+  cout<<"Size of "<<linkedList->sizeOf()<<endl;
   linkedList->printLinkedList();
   
-  cout<<"Remove 6: "<<linkedList->remove(6)<<endl;
-  cout<<endl<<endl;
+  cout<<"Remove 0: "<<endl;
+  linkedList->remove(0);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
-  cout<<endl<<endl;
   linkedList->printLinkedList();
   
-  cout<<"Remove 0: "<<linkedList->remove(0)<<endl;
-  cout<<endl<<endl;
+  cout<<"Remove 11: "<<endl;
+  linkedList->remove(11);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
-  cout<<endl<<endl;
   linkedList->printLinkedList();
   
-  cout<<"Remove 11: "<<linkedList->remove(11)<<endl;
-  cout<<endl<<endl;
+  cout<<"Remove 1: "<<endl;
+  linkedList->remove(1);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
-  cout<<endl<<endl;
   linkedList->printLinkedList();
   
-  cout<<"Remove 1: "<<linkedList->remove(1)<<endl;
-  cout<<endl<<endl;
+  cout<<"Remove 200: "<<endl;
+  linkedList->remove(200);
   cout<<"Size of "<<linkedList->sizeOf()<<endl;
-  cout<<endl<<endl;
-  linkedList->printLinkedList();
-  
-  cout<<"Remove 200: "<<linkedList->remove(200)<<endl;
-  cout<<endl<<endl;
-  cout<<"Size of "<<linkedList->sizeOf()<<endl;
-  cout<<endl<<endl;
   linkedList->printLinkedList();
   
   cout<<"Search  of 6 "<<linkedList->search(6)<<endl;

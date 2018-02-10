@@ -26,12 +26,11 @@ class LinkedList{
         LinkedList(); // Default Contructor
        ~LinkedList(); // Destructor
         
-typedef Node * iterator;
          int   sizeOf();
         bool   isEmpty();
-        bool   insertInOrder(T dataIn); // Insert data in order
+        void   insertInOrder(T dataIn); // Insert data in order
         void   printLinkedList();       // Print the entire LinkedList
-        bool   remove(T dataOut);       // Remove specific data
+        void   remove(T dataOut);       // Remove specific data
         bool   search(T dataSearch);    // Search linkedList
 };
 #endif
