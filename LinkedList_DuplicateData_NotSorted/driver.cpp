@@ -13,52 +13,71 @@ int main(){
   //////////////////////////////////////////////////////////
   int array[SIZE] = {6,1,2,3,5,4,5,6,7,10,8,10,11,3,4,0};
 
-  cout<<"Insert Tail:"<<endl;
+  cout<<"*** Insert Tail:"<<endl;
   for(int i = 0; i < SIZE; ++i){
-      cout<<i<<": "<<array[i]<<"--->"<<linkedList->insertTail(array[i])<<endl;
+      cout<<i+1<<": Inserted ----> "<<array[i]<<endl;
+      linkedList->insertTail(array[i]);
   }
 
-  cout<<endl<<"Now the LinkedList is:"<<endl<<endl;
+  cout<<endl<<"*** Now the LinkedList is:"<<endl;
   linkedList->printLinkedList();
   cout<<endl<<endl;
  
-  int counter = 0;
-  while(linkedList->removeHead()){
-    counter++; 
-    cout<<counter<<"***Node Removed from head***"<<endl;
+  int counter = 1;
+  while(!linkedList->isEmpty()){
+    linkedList->removeHead();
+    cout<<counter++<<" Node Removed from head"<<endl;
   }
-
   cout<<endl<<endl; 
   
+  cout<<"*** LinkedList is here:"<<endl;
   linkedList->printLinkedList();
-  /////////////////////////////////////////////////////////
-  cout<<"***Insert Head***"<<endl;  
+  cout<<endl<<endl;
+ 
+   /////////////////////////////////////////////////////////
+  cout<<"*** Insert Head:"<<endl;  
   for(int i = 0; i < SIZE; ++i){
-   
-      cout<<i<<": "<<array[i]<<"--->"<<linkedList->insertHead(array[i])<<endl;
+      cout<<i+1<<": Inserted ----> "<<array[i]<<endl;
+      linkedList->insertHead(array[i]);
   }
   
-  cout<<"LinkedList is here:"<<endl;
+  cout<<"*** LinkedList is here:"<<endl;
   linkedList->printLinkedList();
   cout<<endl<<endl;
 
-  while(linkedList->removeTail()){
-      
-      cout<<"***Tail Removed***"<<endl;
+  while(!linkedList->isEmpty()){
+
+      linkedList->removeTail();
+      cout<<"*** Tail Removed:"<<endl;
       linkedList->printLinkedList();
- 
+
       cout<<endl<<endl;             
-      if(linkedList->search(8)){
-          if(linkedList->remove(8)){
-              cout<<"8 is removed"<<endl;
-          }
+      if(linkedList->search(0)){
+          linkedList->remove(0);
+          cout<<"0 is removed"<<endl;
+          
       }
       cout<<endl<<endl;
-        
-      linkedList->removeHead();
-      cout<<"***Head Removed***"<<endl;
-      linkedList->printLinkedList();
+      
+      cout<<endl<<endl;
+      if(linkedList->search(8)){
+          linkedList->remove(8);
+          cout<<"8 is removed"<<endl;
  
+      }
+      cout<<endl<<endl;
+
+      cout<<endl<<endl;
+      if(linkedList->search(1)){
+          linkedList->remove(1);
+           cout<<"1 is removed"<<endl;
+ 
+      }
+      cout<<endl<<endl;
+  
+      linkedList->removeHead();
+      cout<<"*** Head Removed: "<<endl;
+      linkedList->printLinkedList();
       cout<<endl<<endl;
   }
   ///////////////////////////////////////////////////////
@@ -73,9 +92,10 @@ int main(){
   cout<<"***Insert Tail***"<<endl;
   
   for(int i = 0; i < SIZE1; ++i){
-      cout<<i<<": "<<array7[i]<<"--->"<<linkedList->insertTail(array7[i])<<endl;
+      cout<<i<<": "<<array7[i]<<"---> is inserted"<<endl;
+      linkedList->insertTail(array7[i]);
   } 
-  cout<<"Now the LinkedList is:"<<endl;
+  cout<<"*** Now the LinkedList is:"<<endl;
   linkedList->printLinkedList();
   cout<<endl<<endl;
  
@@ -85,23 +105,26 @@ int main(){
   linkedList->insertTail(7);
   linkedList->insertTail(8);
   linkedList->insertTail(9);
+ 
+  cout<<"*** Removed duplicates and added 6, 7, 8, 9:"<<endl;
   
-  cout<<"Removed duplicates and added 6, 7, 8, 9:"<<endl;  
-  cout<<"Now the LinkedList is:"<<endl;
+  cout<<"*** Now the LinkedList is:"<<endl;
   linkedList->printLinkedList();
   cout<<endl<<endl;
 
   int n = 9;
   int temp  = linkedList->nthToLast(n);
-  cout<<"The value of the "<<n<<" th closest element to the last is: "<<temp<<endl;
-  
+  cout<<"The result of LinkedList->nthToLast(9): "<<temp<<endl;
+  cout<<endl<<endl;    
   // Uncomment if you want to see behaviour when n is larger than linked list size
   // n = 15;
-  //temp  = linkedList->nthToLast(n);
-  //cout<<"The value of the "<<n<<" th closest element to the last is: "<<temp<<endl;
+  // temp  = linkedList->nthToLast(n);
+  // cout<<"The value of the "<<n<<" th closest element to the last is: "<<temp<<endl;
 
 
-  linkedList->deleteMiddleNode();
+  linkedList->removeMiddleNode();
+  cout<<"*** Remove the middle node from list:"<<endl;
+  cout<<"*** Now the LinkedList is:"<<endl;
   linkedList->printLinkedList();
   
   delete linkedList;

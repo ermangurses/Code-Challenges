@@ -1,28 +1,29 @@
 #include <exception>
 #include <unordered_set>
 #include "LinkedList.h"
-/*
-
-
-Default Constructor
-
-
-*/
-template<class DataType>
-LinkedList<DataType>::LinkedList(){
+/******************************************************************************
+//
+//
+//  Default Costructor 
+//
+//
+*******************************************************************************/
+template<class T>
+LinkedList<T>::LinkedList(){
  
   head = NULL;
+  size = 0;
 
 }
-/*
-
-
-Destructor
-
-
-*/
-template<class DataType>
-LinkedList<DataType>::~LinkedList(){
+/******************************************************************************
+//
+//
+//  Destructor
+//
+//
+*******************************************************************************/
+template<class T>
+LinkedList<T>::~LinkedList(){
 
     Node * iter = head;
     Node * temp = head;
@@ -32,168 +33,293 @@ LinkedList<DataType>::~LinkedList(){
         iter = iter->next;
         delete temp;
         temp = iter;
+
     }
     head = NULL;
 }
-/*
+
+/******************************************************************************
+//
+//
+//  The size of the link 
+//
+//
+*******************************************************************************/
+template <class T>
+int LinkedList<T>::sizeOf(){
+
+    return size;
+}
+
+/******************************************************************************
+//
+//
+//  Is empty
+//
+//
+*******************************************************************************/
+template <class T>
+bool LinkedList<T>::isEmpty(){
+
+    return (size == 0);
+}
 
 
-Insert head
 
-
-*/
-template<class DataType>
-bool LinkedList<DataType>::insertHead(DataType dataNew){
+/******************************************************************************
+//
+//
+//  Insert node to head
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::insertHead(T dataNew){
 
     Node * newNode = new Node;
     newNode->dataIn = dataNew;
 
-    if(head == NULL){
+    if(!head){
 
         head = newNode;
         newNode->next = NULL;
-    }else{
+
+    } else {
 
        newNode->next = head;
        head = newNode;
     }
-
-  return true;
+    ++size;
 }
-/*
 
 
-Insert tail
-
-
-*/
-template<class DataType>
-bool LinkedList<DataType>::insertTail(DataType dataNew){
+/******************************************************************************
+//
+//
+//  Insert node to tail
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::insertTail(T dataNew){
 
     Node * newNode = new Node;
     newNode->dataIn = dataNew;
     newNode->next = NULL;
     
-    if(head == NULL){
+    if(!head){
 
         head = newNode;
-      return true;
-    }
+
+    } else {
  
-    Node * iter = head;
-    while(iter->next != NULL){
-        iter = iter->next;
-    }
-
-    iter->next = newNode;
-  return true;   
-}
-
-/*
-
-
-remove head
-
-
-*/
-template<class DataType>
-bool LinkedList<DataType>::removeHead(){
-
-    if(head == NULL){
-        return false;
-    }
-
-    Node * temp = head;
-    head = head->next;
-    delete temp;
-  return true;    
-}
-
-/*
-
-
-Remove tail
-
-
-*/
-template<class DataType>
-bool LinkedList<DataType>::removeTail(){
-
-    if(head == NULL){
-
-      return false;
-    }
-
-    if(head->next == NULL){
-        delete head;
-        head = NULL;
-      return true;
-    }
-
-    Node * iter = head;
-
-    while(iter->next->next != NULL){
-   
-        iter = iter->next;
-    }
-    delete iter->next;
-    iter->next = NULL;
-  return true;
-}
-
-/*
-
-
-remove
-
-
-*/
-template<class DataType>
-bool LinkedList<DataType>::remove(DataType dataOut){
-
-    if(head == NULL){
-
-      return false;
-    }
-
-    Node * iter = head;
-    
-    if(head->dataIn == dataOut){
-        head = iter->next;
-        delete iter;
-      return true;    
-    }
-  
-    while(iter->next != NULL && iter->next->dataIn != dataOut){
-        iter = iter->next;                        
-    }
-
-    if(iter->next != NULL && iter->next->dataIn == dataOut){
-        
-        if(iter->next->next != NULL){
-   
-            Node * temp  = iter->next->next;
-            delete iter->next;
-            iter->next = temp;
-        }else{
-            delete iter->next;
-            iter->next = NULL;
+        Node * iter = head;
+        while(iter->next != NULL){
+            iter = iter->next;
         }
-        return true;
-    }else{
-        return false;
+        iter->next = newNode;
+   }
+   ++size;
+}
+
+/******************************************************************************
+//
+//
+//  Remove node from head
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::removeHead(){
+
+    if(!head){
+    
+        return;
+
+    } else {
+    
+        Node * temp = head;
+        head = head->next;
+        delete temp;
+        --size;
     }
 }
-/*
+/******************************************************************************
+//
+//
+//  Remove node from tail
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::removeTail(){
 
+    if(!head){
 
-  Search operation given data "dataSearch"
+      return;
 
+    } else {
 
+        if(head->next == NULL){
 
-*/
-template<class DataType>
-bool LinkedList<DataType>::search(DataType dataSearch){
+            delete head;
+            head = NULL;
+    
+        } else {
+
+            Node * iter = head;
+            Node * previous = NULL;
+
+            while(iter->next != NULL){
+                previous = iter;
+                iter = iter->next;
+            }
+            delete iter;
+            previous->next = NULL;
+
+        }
+        --size;
+    } 
+}
+
+/******************************************************************************
+//
+//
+//  Remove node given data *** new version using previous pointer ***
+//
+//  1) Linkedlist is empty
+//  2) Delete from head
+//  3) Delete from middle
+//  4) Delete from tail
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::remove(T dataOut){
+
+    // 1) Linkedlist is empty
+    if(!head){
+
+        return;
+    } else {
+        
+        Node * iter = head;
+        Node * prev = NULL;
+        
+        while(iter != NULL && iter->dataIn != dataOut){
+            
+            prev = iter;
+            iter = iter->next;
+        }
+
+        if(iter != NULL && iter->dataIn == dataOut){
+        
+            // 2) Delete from head
+            if(prev == NULL){
+
+              head = iter->next;
+              delete iter;
+          
+            } else {
+                  
+                // 3) Delete from middle
+                if(iter->next != NULL){
+                
+                  prev->next = iter->next;
+                  delete iter;
+
+                } else {  
+                // 4) Delete from tail  
+                
+                   delete iter;
+                   prev->next = NULL;
+                }
+            }
+            --size;
+        }
+    }
+}
+/******************************************************************************
+//
+//
+//  Remove node given data  *** old version ***
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::removeOld(T dataOut){
+
+    if(!head){
+    
+        return;
+    
+    } else {
+
+        Node * iter = head;
+    
+        if(head->dataIn == dataOut){
+            head = iter->next;
+            delete iter;
+        }
+  
+        while(iter->next != NULL && iter->next->dataIn != dataOut){
+            iter = iter->next;                        
+        }
+
+        if(iter->next != NULL && iter->next->dataIn == dataOut){
+        
+            if(iter->next->next != NULL){
+   
+                Node * temp  = iter->next->next;
+                delete iter->next;
+                iter->next = temp;
+            }else{
+                delete iter->next;
+                iter->next = NULL;
+            }        
+        }
+        --size;
+    }
+}
+
+/******************************************************************************
+//
+//
+//  Search linked list given data *** new version using previous pointer ***
+//
+//
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::search(T dataSearch){
+
+    if(!head){
+
+        return false;
+    } else {
+    
+        Node * iter = head;
+        Node * prev = NULL;
+        while(iter != NULL && iter->dataIn != dataSearch){
+
+             prev = iter;
+             iter = iter->next;
+        }
+
+        if(iter != NULL  && iter->dataIn == dataSearch){
+
+             return true;
+        }
+    }
+    return false;
+}
+/******************************************************************************
+//
+//
+//  Search linked list given data  *** old version ***
+//
+//
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::searchOld(T dataSearch){
 
     if(head == NULL){
 
@@ -217,15 +343,15 @@ bool LinkedList<DataType>::search(DataType dataSearch){
            return false;
     }  
 }
-/*
-
-
- Print the linkedList
-
-
-*/
-template<class DataType>
-void LinkedList<DataType>::printLinkedList(){
+/******************************************************************************
+//
+//
+//  Print Linked List
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::printLinkedList(){
 
     if(head == NULL){
 
@@ -240,16 +366,18 @@ void LinkedList<DataType>::printLinkedList(){
         iter = iter->next;
     }
 }
-/*
 
 
- remove duplicates from LL
- The time complexity is O(N^2)
-
-
-*/
-template<class DataType>
-bool LinkedList<DataType>::removeDuplicates(){
+/******************************************************************************
+//
+//  Remove duplicates from linked list
+//  
+//  The time complexity is O(N^2)
+//
+//
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::removeDuplicates(){
 
     if(head == NULL || head->next == NULL){
 
@@ -281,17 +409,21 @@ bool LinkedList<DataType>::removeDuplicates(){
     }
     return true;
 }
-/*
 
-remove Duplicates Using Hash
-Time complexity is O(N) which is linear
+/******************************************************************************
+//
+//
+//  Remove Duplicates Using Hash Set
+//  
+//  Time complexity is O(N) which is linear
+//
+*******************************************************************************/
 
-*/
-template<class DataType>
-bool LinkedList<DataType>::removeDuplicatesUsingHash(){
+template<class T>
+bool LinkedList<T>::removeDuplicatesUsingHash(){
 
-    unordered_set<DataType> hashSet;
-    typename  unordered_set<DataType>::const_iterator cIter;
+    unordered_set<T> hashSet;
+    typename  unordered_set<T>::const_iterator cIter;
 
     // Check wheter LL is empty or not
     if (head == NULL){
@@ -322,7 +454,9 @@ bool LinkedList<DataType>::removeDuplicatesUsingHash(){
     }
     return true;
 }
-/*
+
+
+/******************************************************************************
 
 
 --- nthToLast ---
@@ -343,10 +477,9 @@ For instance:
    |
    1  2  3  4  5  6  7  8  9
    O--O--O--O--O--O--O--O--O            
-*/
-
-template<class DataType> 
-DataType LinkedList<DataType>::nthToLast(int n){
+*******************************************************************************/
+template<class T> 
+T LinkedList<T>::nthToLast(int n){
 
     if(head == NULL){
         //non-existent element so we terminate
@@ -377,21 +510,24 @@ DataType LinkedList<DataType>::nthToLast(int n){
     return iter1->dataIn;
 }
 
-/*
+/******************************************************************************
 
  *** deleteMiddleNode*** 
  
+ It reache
  It is a wrapper function to send pointer to the deleteNode
  
 
-*/
-template<class DataType>
-bool LinkedList<DataType>::deleteMiddleNode(){
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::removeMiddleNode(){
  
     if(head == NULL || head->next == NULL){
 
         return false;
     }
+  //  if(size )   
+
     Node * iter = head;
         
     const int middle = 5;
@@ -411,15 +547,16 @@ bool LinkedList<DataType>::deleteMiddleNode(){
     bool result = deleteNode(iter);    
     return result;
 } 
-/*
+/******************************************************************************
 
-***deleteNode***
+*** deleteNode ***
 
-It deletes the node that has only access to that node
-so no head access in here
-*/
-template<class DataType>
-bool LinkedList<DataType>::deleteNode(Node * node){
+It deletes the node that has only access to that node so no head access in here
+*******************************************************************************/
+
+
+template<class T>
+bool LinkedList<T>::deleteNode(Node * node){
     Node * iter = node;
 
     // Copy the element to its previous neighbor

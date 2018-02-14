@@ -7,31 +7,36 @@
 using namespace std;
 
 
-template<class DataType>
+template<class T>
 class LinkedList{
 
 struct Node {
-    DataType dataIn;
+       T   dataIn;
     Node * next;
 };
 
     public:
         LinkedList();
        ~LinkedList();
-        bool insertHead(DataType dataNew);
-        bool insertTail(DataType dataNew);
-        bool removeHead();
-        bool removeTail();
-        bool remove(DataType dataOut);
+         int sizeOf();
+        bool isEmpty();
+        void insertHead(T dataNew);
+        void insertTail(T dataNew);
+        void removeHead();
+        void removeTail();
+        void removeOld(T dataOut);
+        void remove(T dataOut);
+        bool search(T dataSearch);
+        bool searchOld(T dataSearch);
         bool removeDuplicates();
         bool removeDuplicatesUsingHash();
-        bool search(DataType dataSearch);
-        DataType nthToLast(int n);
+           T nthToLast(int n);
         void printLinkedList();
-        bool deleteMiddleNode();
+        bool removeMiddleNode();
     private:
+        int   size;
        Node * head;
-       bool deleteNode(Node * node); 
+       bool   deleteNode(Node * node); 
           
 };
 #endif
