@@ -367,10 +367,9 @@ void LinkedList<T>::printLinkedList(){
     }
 }
 
-
 /******************************************************************************
 //
-//  Remove duplicates from linked list
+//  Remove duplicates from linked list *** new version ***
 //  
 //  The time complexity is O(N^2)
 //
@@ -378,6 +377,50 @@ void LinkedList<T>::printLinkedList(){
 *******************************************************************************/
 template<class T>
 bool LinkedList<T>::removeDuplicates(){
+
+    if(head == NULL || head->next == NULL){
+
+      return false;
+    } else {
+     
+        Node * iter1 = head;
+        Node * iter2 = head;
+
+        int count = 0;   
+        while(iter1->next != NULL){
+        
+            while(iter2->next != NULL){
+           
+                if(iter2->next->dataIn == iter1->dataIn){
+ 
+                    Node * temp = iter2->next;
+                    iter2->next = iter2->next->next;
+                    delete temp;
+                    temp = NULL;
+                }else{
+                    iter2 = iter2->next;
+                }           
+            }
+            iter1 = iter1->next;
+            if(iter1 == NULL){
+                break;
+            }
+            iter2 = iter1;
+        }
+        return true;
+    }
+}
+
+/******************************************************************************
+//
+//  Remove duplicates from linked list *** old version ***
+//  
+//  The time complexity is O(N^2)
+//
+//
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::removeDuplicatesOld(){
 
     if(head == NULL || head->next == NULL){
 
@@ -413,14 +456,59 @@ bool LinkedList<T>::removeDuplicates(){
 /******************************************************************************
 //
 //
-//  Remove Duplicates Using Hash Set
+//  Remove Duplicates Using Hash Set  *** New Version ***
+//  
+//  Time complexity is O(N) which is linear
+//
+*******************************************************************************/
+template<class T>
+bool LinkedList<T>::removeDuplicatesUsingHash(){
+
+    unordered_set<T> hashSet;
+    typename  unordered_set<T>::const_iterator cIter;
+
+    // Check wheter LL is empty or not
+    if (!head){
+        return false; 
+    } else {
+
+        Node * iter = head;
+     
+        // Insert the first element of the 
+        hashSet.insert(head->dataIn);
+   
+        while(iter->next != NULL){
+         
+            cIter = hashSet.find(iter->next->dataIn);
+        
+            // If there is no data in the set, insert it
+            if(cIter == hashSet.end()){
+
+                hashSet.insert(iter->next->dataIn); 
+                iter = iter->next;    
+
+            }else{
+                // If there is data, which means duplicate data
+            
+                Node * temp = iter->next;
+                iter->next = iter->next->next;
+                delete temp;
+            }
+        }
+        return true;
+    }
+}
+/******************************************************************************
+//
+//
+//  Remove Duplicates Using Hash Set *** Old Version ***
 //  
 //  Time complexity is O(N) which is linear
 //
 *******************************************************************************/
 
 template<class T>
-bool LinkedList<T>::removeDuplicatesUsingHash(){
+bool LinkedList<T>::removeDuplicatesUsingHashOld(){
 
     unordered_set<T> hashSet;
     typename  unordered_set<T>::const_iterator cIter;

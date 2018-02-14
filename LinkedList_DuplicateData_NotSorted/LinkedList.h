@@ -24,11 +24,13 @@ struct Node {
         void insertTail(T dataNew);
         void removeHead();
         void removeTail();
-        void removeOld(T dataOut);
         void remove(T dataOut);
+        void removeOld(T dataOut);
         bool search(T dataSearch);
         bool searchOld(T dataSearch);
         bool removeDuplicates();
+        bool removeDuplicatesOld();
+        bool removeDuplicatesUsingHash();
         bool removeDuplicatesUsingHash();
            T nthToLast(int n);
         void printLinkedList();
