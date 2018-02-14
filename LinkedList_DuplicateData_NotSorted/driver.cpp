@@ -1,10 +1,38 @@
-#include "LinkedList.h"
 #include "LinkedList.cpp"
 #include <iostream>
+#include <cstdlib>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <unistd.h>
+
 #define SIZE 16
 #define SIZE1 9
 using namespace std;
 
+/******************************************************************************
+  
+  *** bool openInputFile(ifstream & inFile) ***
+    
+  opens data.txt file 
+    
+  returns true if the file is opened succesfully
+    
+  return false if it fails                        
+******************************************************************************/
+
+bool openInputFile(ifstream & inFile){
+
+    inFile.open("data.txt");
+
+    if(!inFile){
+        
+        cout<< "The input file cannot be opened!!!\n";
+
+        return false;
+    }
+    return true;
+}
 
 int main(){
 
@@ -34,7 +62,7 @@ int main(){
   linkedList->printLinkedList();
   cout<<endl<<endl;
  
-   /////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////
   cout<<"*** Insert Head:"<<endl;  
   for(int i = 0; i < SIZE; ++i){
       cout<<i+1<<": Inserted ----> "<<array[i]<<endl;
@@ -126,8 +154,58 @@ int main(){
   cout<<"*** Remove the middle node from list:"<<endl;
   cout<<"*** Now the LinkedList is:"<<endl;
   linkedList->printLinkedList();
-  
+ 
   delete linkedList;
+  cout<<"*** LinkedList is deleted:"<<endl;
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList->printLinkedList();
+
+  /******************************************************************************
+ 
+     Do the operations in linked list using input.txt file
+    
+  ******************************************************************************/
+  cout<<endl<<endl;
+  cout<<"**** File Operations Start ***"<<endl;  
+  LinkedList<int> * linkedList1 = new LinkedList<int>();
+
+  ifstream inFile;
+  string line;  
+
+  if(!openInputFile(inFile)){
+      return 0;
+  }
+
+  getline(inFile, line);
+  cout<<"There will be "<<atoi(line.c_str())*2<<" elements in the linked list"<<endl;
+  
+  getline(inFile, line);
+  stringstream ss(line); 
+  string token;
+
+
+  while(getline(ss, token, ' ')){
+
+      cout<<token<<" ***Inserted to Tail***"<<endl<<endl;
+      linkedList->insertTail(atoi(token.c_str()));
+      linkedList->printLinkedList();
+      cout<<endl<<endl;
+   
+      usleep(1000);
+
+      cout<<token<<" ***Inserted to Head***"<<endl<<endl;
+      linkedList->insertHead(atoi(token.c_str()));
+      linkedList->printLinkedList();
+      cout<<endl<<endl;
+   
+      usleep(1000);
+  }
+ 
+  delete linkedList;
+  cout<<"*** LinkedList is deleted:"<<endl;
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList->printLinkedList();
+  
   
 return 0;
 }

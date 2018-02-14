@@ -31,7 +31,7 @@ struct Node {
         bool removeDuplicates();
         bool removeDuplicatesOld();
         bool removeDuplicatesUsingHash();
-        bool removeDuplicatesUsingHash();
+        bool removeDuplicatesUsingHashOld();
            T nthToLast(int n);
         void printLinkedList();
         bool removeMiddleNode();
