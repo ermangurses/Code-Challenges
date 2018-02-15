@@ -65,6 +65,48 @@ int main(){
     cout<<endl<<endl;
     cout<< "Print Stack:"<<endl;
     stack->printStack();
+    cout<<endl<<endl;
+
+    /******************************************************************************
+ 
+      Do the operations in linked list using input.txt file
+    
+    ******************************************************************************/
+
+    cout<<endl<<endl;
+    cout<<"**** File Operations Start ****"<<endl;
+ 
+    Stack<int> * stack1 = new Stack<int>();   
+
+    ifstream inFile;
+    string line;
+
+    if(!openInputFile(inFile)){
+
+        return 0;
+    }
+   
+    // Read the first line
+    getline(inFile, line);
+
+    cout<<"There will be "<<atoi(line.c_str())<<" elements in the stack"<<endl;
+ 
+    // Read the second line and tokenize it
+    getline(inFile, line);
+    stringstream ss(line);
+    string token;
+  
+    while(getline(ss, token, ' ')){
+        stack1->push(atoi(token.c_str()));
+    }
     cout<<endl<<endl; 
+
+    stack1->printStack();
+
+    delete stack1;
+
+    cout<<endl<<endl;    
+    cout<<"Print Stack after destructor"<<endl;
+    stack1->printStack(); 
 } 
 
