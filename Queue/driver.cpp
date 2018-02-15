@@ -55,7 +55,43 @@ int main(){
        cout<<dataOut<<" is removed"<<endl;
    }
 
+   /******************************************************************************
+ 
+     Do the operations in linked list using input.txt file
+    
+   ******************************************************************************/
 
+   cout<<endl<<endl;
+   cout<<"**** File Operations Start ****"<<endl;
+   Queue<int> * queue1 = new Queue<int>();
+
+   ifstream inFile;
+   string line;
+
+   if(!openInputFile(inFile)){
+
+       return 0;
+   }
+   
+   // Read the first line
+   getline(inFile, line);
+
+   cout<<"There will be "<<atoi(line.c_str())<<" elements in the queue"<<endl;
+ 
+   // Read the second line and tokenize it
+   getline(inFile, line);
+   stringstream ss(line);
+   string token;
+  
+   while(getline(ss, token, ' ')){
+       queue1->enqueue(atoi(token.c_str()));
+   }
+   cout<<endl<<endl; 
+
+   queue1->printQueue();
+
+   delete queue1;
+   
    return 0;
 
 }
