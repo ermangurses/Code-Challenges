@@ -28,5 +28,5 @@ class Queue{
     bool isEmpty();
     int  sizeOf();
            
-}
+};
 # endif
