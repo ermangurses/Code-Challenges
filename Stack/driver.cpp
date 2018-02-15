@@ -38,7 +38,33 @@ int main(){
 
     Stack<int> * stack = new Stack<int>();
  
+    int counter = 0;
 
+    while(counter < SIZE){
 
-}
+        stack->push(counter);
+        cout<<"stack->push("<<counter<<");"<<endl;
+        ++counter;
+    }
+
+    cout<<endl<<endl;
+    cout<< "Print Stack:"<<endl;
+    stack->printStack();
+    cout<<endl<<endl;
+       
+    int temp;
+    
+    cout<< "Pop Stack:"<<endl; 
+ 
+    while(!stack->isEmpty()){
+
+        stack->pop(temp);
+        cout<<"stack->pop() returns ---> "<<temp<<endl;
+
+    }
+    cout<<endl<<endl;
+    cout<< "Print Stack:"<<endl;
+    stack->printStack();
+    cout<<endl<<endl; 
+} 
 

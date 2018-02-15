@@ -21,7 +21,7 @@ class Stack{
     Stack();
    ~Stack();
     void push(T dataNew);
-    void pop();
+    void pop(T & dataOut);
     T    top();
     bool isEmpty();
     int  sizeOf();
