@@ -27,6 +27,6 @@ class Queue{
     bool dequeue(T & dataIn);
     bool isEmpty();
     int  sizeOf();
-           
+    void printQueue();           
 };
 # endif

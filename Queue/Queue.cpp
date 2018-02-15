@@ -72,7 +72,7 @@ bool Queue<T>::isEmpty(){
 template<class T>
 void Queue<T>::enqueue(T newData){
 
-    Node * newNode;
+    Node * newNode = new Node;
     newNode->dataIn = newData;
     newNode->next = NULL; 
      
@@ -104,11 +104,10 @@ bool Queue<T>::dequeue(T & dataOut){
         return false;  
  
     } else {
-
+        
         Node * temp = head;
-        head = head->next;
         dataOut = temp->dataIn;
-
+        head = head->next;
         if(tail == temp){
         
             tail = NULL;
@@ -118,4 +117,23 @@ bool Queue<T>::dequeue(T & dataOut){
         --size;
         return true;
    }
+}
+
+/******************************************************************************
+//
+// 
+// printQueue
+//
+//
+*******************************************************************************/
+template<class T>
+void Queue<T>::printQueue(){
+
+    Node * iter = head;
+
+    while(iter != NULL){
+ 
+        cout<<" "<<iter->dataIn<<endl;
+        iter = iter->next;
+    }
 }
