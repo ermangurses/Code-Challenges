@@ -22,7 +22,7 @@ class Stack{
    ~Stack();
     void push(T dataNew);
     void pop(T & dataOut);
-    T    top();
+    void top(T & top);
     bool isEmpty();
     int  sizeOf();
     void printStack();

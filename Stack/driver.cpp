@@ -102,10 +102,15 @@ int main(){
     cout<<endl<<endl; 
 
     stack1->printStack();
+  
+    cout<<endl<<endl;
+    
+    stack1->top(temp);
+    cout<<"Top of Stack: "<<temp<<endl;     
+    cout<<endl<<endl;
 
     delete stack1;
 
-    cout<<endl<<endl;    
     cout<<"Print Stack after destructor"<<endl;
     stack1->printStack(); 
 } 
