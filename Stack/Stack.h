@@ -8,17 +8,19 @@ class Stack{
 
     private:
 
-    Node{
+    struct  Node{
+        
         T dataIn;
         Node * next;
     };
     int size;
+    Node * head;
 
     public:
 
     Stack();
    ~Stack();
-    void push(T dataIn);
+    void push(T dataNew);
     void pop();
     T    top();
     bool isEmpty();
