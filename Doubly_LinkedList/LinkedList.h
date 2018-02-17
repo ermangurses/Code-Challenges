@@ -1,5 +1,5 @@
-#ifndef STACK_H
-#define STACK_H
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
 #include<cstdlib>
 #include<iostream>
 
