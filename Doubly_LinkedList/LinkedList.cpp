@@ -14,8 +14,12 @@ LinkedList<T>::LinkedList(){
 template<class T>
 LinkedList<T>::~LinkedList(){
 
+    while(!isEmpty()){                   
+    
+        removeHead();
 
-
+    }
+   
 }
 
 template<class T>
@@ -223,28 +227,30 @@ void LinkedList<T>::removeDuplicatesUsingHash(){
         while(iter != NULL){
          
             cIt = hashSet.find(iter->dataIn);
-            // It is new data          
+            
+            // If there is no data in the set, insert it         
             if(cIt == hashSet.end()){
 
                 hashSet.insert(iter->dataIn);            
-
+                iterPrev = iter;
+                iter = iter->next;
             } else {
 
                 if(iter->next != NULL){
-
+                        
                     iterPrev->next = iter->next;
                     iter->next->prev = iterPrev;
                     delete iter;
-               
+                    iter = iterPrev->next;
+
                 } else { 
                     
-                    iterPrev->next = NULL;
+                    iterPrev->next = NULL;                    
                     delete iter; 
- 
+                    iter =  NULL;
                 }
+                --size;
             }
-            iterPrev = iter;
-            iter = iter->next;            
         }        
     }
 }
