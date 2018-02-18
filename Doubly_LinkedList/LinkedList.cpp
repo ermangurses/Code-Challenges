@@ -36,7 +36,7 @@ template<class T>
 void LinkedList<T>::insertHead(T dataNew){
 
 
-    Node * newNode;
+    Node * newNode = new Node;
     newNode->dataIn = dataNew;
 
     if(!head){
@@ -91,10 +91,17 @@ void LinkedList<T>::removeHead(){
 
     } else {
 
-        Node * temp = head;
-        head = head->next;
-        delete temp;
-        head->prev = NULL;
+        if(head->next == NULL){
+  
+           delete head;
+           head = NULL;
+        } else {
+
+            Node * temp = head;
+            head = head->next;
+            delete temp;
+            head->prev = NULL;
+        }
     }
     --size;
 }
@@ -106,18 +113,25 @@ void LinkedList<T>::removeTail(){
         return;
   
     } else {
-
-
-        Node *     iter = head;
-        Node * iterPrev = NULL;
         
-        while(iter->next != NULL){
+        if(head->next == NULL){
+           
+            delete head;
+            head = NULL;
+        } else {
+
+            Node *     iter = head;
+            Node * iterPrev = NULL;
+        
+            while(iter->next != NULL){
    
-            iterPrev = iter;
-            iter = iter->next;             
+               iterPrev = iter;
+               iter = iter->next;             
+            }
+            delete iter;
+            iterPrev->next = NULL;
         }
-        delete iter;
-        iterPrev->next = NULL;
+        --size; 
     }
 }
 
@@ -154,7 +168,7 @@ void LinkedList<T>::remove(T dataOut){
                     iterPrev->next = iter->next;
                     iter->next->prev = iterPrev;
                     delete iter;
-                    
+                    --size;  
                 } else {
                 // 4) Remove tail
                  
@@ -163,6 +177,32 @@ void LinkedList<T>::remove(T dataOut){
             }
         }
     }
+}
+
+template <class T>
+bool LinkedList<T>::search(T dataSearch){
+    // 1) Empty linked list 
+    if(!head){
+
+        return false;
+ 
+    } else {
+
+        Node * iter = head;
+        Node * iterPrev = NULL;
+
+        while(iter != NULL && iter->dataIn != dataSearch){
+        
+            iterPrev = iter;
+            iter = iter->next;
+        }
+
+        if(iter != NULL && iter->dataIn == dataSearch){
+        
+            return true;    
+        }
+    }
+    return false;
 }
 
 template <class T>

@@ -78,7 +78,7 @@ int main(){
       linkedList->removeTail();
       cout<<"*** Tail Removed:"<<endl;
       linkedList->printLinkedList();
-/*
+
       cout<<endl<<endl;             
       if(linkedList->search(0)){
           linkedList->remove(0);
@@ -106,7 +106,7 @@ int main(){
       linkedList->removeHead();
       cout<<"*** Head Removed: "<<endl;
       linkedList->printLinkedList();
-      cout<<endl<<endl;*/
+      cout<<endl<<endl;
   }  
   ///////////////////////////////////////////////////////
  

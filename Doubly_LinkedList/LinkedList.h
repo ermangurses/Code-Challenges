@@ -25,7 +25,7 @@ class LinkedList{
         void removeHead();
         void removeTail();
         void remove(T dataOut);
-       // bool search(T dataSearch);
+        bool search(T dataSearch);
        // bool removeDuplicates();
      //   bool removeDuplicatesUsingHash();
        void printLinkedList();
