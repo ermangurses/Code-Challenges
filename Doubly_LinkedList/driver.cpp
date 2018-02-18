@@ -127,7 +127,7 @@ int main(){
   linkedList->printLinkedList();
   cout<<endl<<endl;
  
-//  linkedList->removeDuplicatesUsingHash();
+  linkedList->removeDuplicatesUsingHash();
  
   linkedList->insertTail(6);
   linkedList->insertTail(7);

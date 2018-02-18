@@ -1,3 +1,4 @@
+#include <unordered_set>
 #include "LinkedList.h"
 
 using namespace std;
@@ -203,6 +204,49 @@ bool LinkedList<T>::search(T dataSearch){
         }
     }
     return false;
+}
+
+template <class T>
+void LinkedList<T>::removeDuplicatesUsingHash(){
+
+    if(!head){
+
+        return;
+
+    } else {
+       
+        unordered_set<T> hashSet;
+        typename unordered_set<T>::const_iterator cIt;
+        Node * iter = head;
+        Node * iterPrev = NULL;        
+
+        while(iter != NULL){
+         
+            cIt = hashSet.find(iter->dataIn);
+            // It is new data          
+            if(cIt == hashSet.end()){
+
+                hashSet.insert(iter->dataIn);            
+
+            } else {
+
+                if(iter->next != NULL){
+
+                    iterPrev->next = iter->next;
+                    iter->next->prev = iterPrev;
+                    delete iter;
+               
+                } else { 
+                    
+                    iterPrev->next = NULL;
+                    delete iter; 
+ 
+                }
+            }
+            iterPrev = iter;
+            iter = iter->next;            
+        }        
+    }
 }
 
 template <class T>
