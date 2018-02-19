@@ -2,7 +2,13 @@
 #include "LinkedList.h"
 
 using namespace std;
-
+/******************************************************************************
+//
+//
+//  Default Costructor 
+//
+//
+*******************************************************************************/
 template<class T>
 LinkedList<T>::LinkedList(){
 
@@ -10,7 +16,13 @@ LinkedList<T>::LinkedList(){
     size = 0;
 }
 
-
+/******************************************************************************
+//
+//
+//  Destructor
+//
+//
+*******************************************************************************/
 template<class T>
 LinkedList<T>::~LinkedList(){
 
@@ -19,9 +31,15 @@ LinkedList<T>::~LinkedList(){
         removeHead();
 
     }
-   
 }
 
+/******************************************************************************
+//
+//
+//  The size of the linked list
+//
+//
+*******************************************************************************/
 template<class T>
 int LinkedList<T>::sizeOf(){
 
@@ -30,6 +48,13 @@ int LinkedList<T>::sizeOf(){
 }
 
 
+/******************************************************************************
+//
+//
+//  Is empty
+//
+//
+*******************************************************************************/
 template<class T>
 bool LinkedList<T>::isEmpty(){
 
@@ -37,6 +62,14 @@ bool LinkedList<T>::isEmpty(){
 
 }
 
+
+/******************************************************************************
+//
+//
+//  Insert node to head
+//
+//
+*******************************************************************************/
 template<class T>
 void LinkedList<T>::insertHead(T dataNew){
 
@@ -59,6 +92,14 @@ void LinkedList<T>::insertHead(T dataNew){
     ++size;
 }
 
+
+/******************************************************************************
+//
+//
+//  Insert node to tail
+//
+//
+*******************************************************************************/
 template<class T>
 void LinkedList<T>::insertTail(T dataNew){
 
@@ -86,6 +127,14 @@ void LinkedList<T>::insertTail(T dataNew){
     ++size;
 }
 
+
+/******************************************************************************
+//
+//
+//  Remove node from head
+//
+//
+*******************************************************************************/
 template<class T>
 void LinkedList<T>::removeHead(){
 
@@ -110,6 +159,15 @@ void LinkedList<T>::removeHead(){
     }
     --size;
 }
+
+
+/******************************************************************************
+//
+//
+//  Remove node from tail
+//
+//
+*******************************************************************************/
 template<class T>
 void LinkedList<T>::removeTail(){
 
@@ -140,6 +198,17 @@ void LinkedList<T>::removeTail(){
     }
 }
 
+/******************************************************************************
+//
+//
+//  Remove node given data *** new version using previous pointer ***
+//
+//  1) Linkedlist is empty
+//  2) Delete from head
+//  3) Delete from middle
+//  4) Delete from tail
+//
+*******************************************************************************/
 template<class T>
 void LinkedList<T>::remove(T dataOut){
 
@@ -153,37 +222,46 @@ void LinkedList<T>::remove(T dataOut){
         Node *     iter = head;
         Node * iterPrev = NULL;
 
-        while(iter != NULL && iter->dataIn != dataOut){
+        while(iter != NULL){
+        
+            if(iter->dataIn == dataOut){
 
-            iterPrev = iter; 
-            iter     = iter->next;
-        }
-        if(iter != NULL && iter->dataIn == dataOut){
-
-            // 2) Remove head
-            if(iterPrev == NULL){
-
-                removeHead();       
-         
-            } else {
-                // 3) Remove middle
-                if(iter->next != NULL){
-                    
-                    Node * temp =  iter;
-                    iterPrev->next = iter->next;
-                    iter->next->prev = iterPrev;
-                    delete iter;
-                    --size;  
+                // 2) Remove head
+                if(iterPrev == NULL){
+                    removeHead();  
+                    iter = head;     
                 } else {
-                // 4) Remove tail
+                    // 3) Remove middle
+                    if(iter->next != NULL){
+                    
+                        Node * temp =  iter;
+                        iterPrev->next = iter->next;
+                        iter->next->prev = iterPrev;
+                        iter = iter->next;
+                        delete temp;
+                        --size;  
+                    } else {
+                    // 4) Remove tail
                  
-                    removeTail();
+                       removeTail();
+                       iter = NULL;
+                    }
                 }
+            } else {
+                iterPrev = iter;
+                iter     = iter->next;
             }
         }
     }
 }
 
+/******************************************************************************
+//
+//
+//  Search linked list given data *** new version using previous pointer ***
+//
+//
+*******************************************************************************/
 template <class T>
 bool LinkedList<T>::search(T dataSearch){
     // 1) Empty linked list 
@@ -210,6 +288,15 @@ bool LinkedList<T>::search(T dataSearch){
     return false;
 }
 
+
+/******************************************************************************
+//
+//
+//  Remove Duplicates Using Hash Set  *** New Version ***
+//  
+//  Time complexity is O(N) which is linear
+//
+*******************************************************************************/
 template <class T>
 void LinkedList<T>::removeDuplicatesUsingHash(){
 
@@ -255,6 +342,13 @@ void LinkedList<T>::removeDuplicatesUsingHash(){
     }
 }
 
+/******************************************************************************
+//
+//
+//  Print Linked List
+//
+//
+*******************************************************************************/
 template <class T>
 void LinkedList<T>::printLinkedList(){
 
@@ -274,5 +368,3 @@ void LinkedList<T>::printLinkedList(){
         }
     }
 }
-
-

@@ -187,6 +187,40 @@ int main(){
       usleep(1000);
   }
  
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
+  cout<<"10 is removed"<<endl;
+  linkedList1->remove(10);  
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
+  cout<<"22 is removed"<<endl;
+  linkedList1->remove(22);
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
+  cout<<"44 is removed"<<endl;
+  linkedList1->remove(44);
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
+  cout<<"334 is removed"<<endl;
+  linkedList1->remove(334);
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
+  cout<<"122 is removed"<<endl;
+  linkedList1->remove(122);
+  cout<<"*** Now the LinkedList is:"<<endl;
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
   delete linkedList1;
   cout<<"*** LinkedList is deleted:"<<endl;
   cout<<"*** Now the LinkedList is:"<<endl;
