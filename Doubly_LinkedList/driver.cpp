@@ -140,26 +140,12 @@ int main(){
   linkedList->printLinkedList();
   cout<<endl<<endl;
 
-/*  int n = 9;
-  int temp  = linkedList->nthToLast(n);
-  cout<<"The result of LinkedList->nthToLast(9): "<<temp<<endl;
-  cout<<endl<<endl;    
-  // Uncomment if you want to see behaviour when n is larger than linked list size
-  // n = 15;
-  // temp  = linkedList->nthToLast(n);
-  // cout<<"The value of the "<<n<<" th closest element to the last is: "<<temp<<endl;
-
-
-  linkedList->removeMiddleNode();
-  cout<<"*** Remove the middle node from list:"<<endl;
-  cout<<"*** Now the LinkedList is:"<<endl;
-  linkedList->printLinkedList();
  
   delete linkedList;
   cout<<"*** LinkedList is deleted:"<<endl;
   cout<<"*** Now the LinkedList is:"<<endl;
   linkedList->printLinkedList();
-*/
+
   /******************************************************************************
  
      Do the operations in linked list using input.txt file
@@ -187,24 +173,24 @@ int main(){
   while(getline(ss, token, ' ')){
 
       cout<<token<<" ***Inserted to Tail***"<<endl<<endl;
-      linkedList->insertTail(atoi(token.c_str()));
-      linkedList->printLinkedList();
+      linkedList1->insertTail(atoi(token.c_str()));
+      linkedList1->printLinkedList();
       cout<<endl<<endl;
    
       usleep(1000);
 
       cout<<token<<" ***Inserted to Head***"<<endl<<endl;
-      linkedList->insertHead(atoi(token.c_str()));
-      linkedList->printLinkedList();
+      linkedList1->insertHead(atoi(token.c_str()));
+      linkedList1->printLinkedList();
       cout<<endl<<endl;
    
       usleep(1000);
   }
  
-  delete linkedList;
+  delete linkedList1;
   cout<<"*** LinkedList is deleted:"<<endl;
   cout<<"*** Now the LinkedList is:"<<endl;
-  linkedList->printLinkedList();
+  linkedList1->printLinkedList();
   
 
 
