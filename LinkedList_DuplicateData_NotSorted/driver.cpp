@@ -200,6 +200,24 @@ int main(){
    
       usleep(1000);
   }
+
+
+  cout<<"44  ***Inserted to Head***"<<endl<<endl;
+  linkedList1->insertHead(44);
+  linkedList1->insertHead(44);
+  linkedList1->insertTail(44);
+  linkedList1->insertTail(44);
+  cout<<"*** Now the LinkedList is:"<<endl;   
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+  linkedList1->removeDuplicatesUsingHash();
+  
+  cout<<"*** Duplicates are removed ***"<<endl;
+  cout<<"*** Now the LinkedList is:"<<endl;   
+  linkedList1->printLinkedList();
+  cout<<endl<<endl;
+
+
   delete linkedList1;
   cout<<"*** LinkedList is deleted:"<<endl;
   cout<<"*** Now the LinkedList is:"<<endl;
