@@ -119,8 +119,8 @@ int main(){
   int array7[SIZE1] = {1,1,2,2,3,4,4,5,5};
   cout<<"***Insert Tail***"<<endl;
   
-  for(int i = 0; i < SIZE1; ++i){
-      cout<<i<<": "<<array7[i]<<"---> is inserted"<<endl;
+  for(int i = 0; i < SIZE; ++i){
+      cout<<i<<": "<<array[i]<<"---> is inserted"<<endl;
       linkedList->insertTail(array7[i]);
   } 
   cout<<"*** Now the LinkedList is:"<<endl;
@@ -187,24 +187,23 @@ int main(){
   while(getline(ss, token, ' ')){
 
       cout<<token<<" ***Inserted to Tail***"<<endl<<endl;
-      linkedList->insertTail(atoi(token.c_str()));
-      linkedList->printLinkedList();
+      linkedList1->insertTail(atoi(token.c_str()));
+      linkedList1->printLinkedList();
       cout<<endl<<endl;
    
       usleep(1000);
 
       cout<<token<<" ***Inserted to Head***"<<endl<<endl;
-      linkedList->insertHead(atoi(token.c_str()));
-      linkedList->printLinkedList();
+      linkedList1->insertHead(atoi(token.c_str()));
+      linkedList1->printLinkedList();
       cout<<endl<<endl;
    
       usleep(1000);
   }
- 
-  delete linkedList;
+  delete linkedList1;
   cout<<"*** LinkedList is deleted:"<<endl;
   cout<<"*** Now the LinkedList is:"<<endl;
-  linkedList->printLinkedList();
+  linkedList1->printLinkedList();
   
   
 return 0;
