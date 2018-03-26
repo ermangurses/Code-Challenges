@@ -171,16 +171,15 @@ void printTree(Node * leaf);
 
 
 ***************************************************/
-void BSTree::printTree(Node * leaf){
+void BSTree::printInOrder(Node * leaf){
 
-    if(leaf != NULL){
-
-        cout<<leaf->key<<endl;
-        printTree(leaf->left);
-        printTree(leaf->right);
-
+    if(Node == NULL){
+        return;
     }
 
+    printInOrder(leaf->left);
+    cout<<leaf->key<<endl;
+    printInOrder(leaf->right);
 }
 /***************************************************
 
