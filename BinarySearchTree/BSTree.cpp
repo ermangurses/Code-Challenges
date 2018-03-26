@@ -155,25 +155,25 @@ void BSTree::destroy_Tree(){
 /***************************************************
  
  
- void printTree(Node * leaf);
+ void printInOrder(Node * leaf);
  
  
 ***************************************************/
-void BSTree::printTree(){
+void BSTree::printInOrder(){
  
-     printTree(root);
+     printInOrder(root);
      
 }
 /***************************************************
 
 
-void printTree(Node * leaf);
+void printInOrder(Node * leaf);
 
 
 ***************************************************/
 void BSTree::printInOrder(Node * leaf){
 
-    if(Node == NULL){
+    if(leaf == NULL){
         return;
     }
 

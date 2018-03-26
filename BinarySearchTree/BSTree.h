@@ -19,12 +19,12 @@ class BSTree{
          Node * remove(int keyOut);
          Node * search(int keySearch);
          void destroy_Tree();
-         void printTree();
+         void printInOrder();
      private:
          void destroyTree(Node * leaf);
          void insert(int keyIn, Node * leaf);
          Node * searchKey(int keySearch, Node * leaf);
-         void printTree(Node * leaf); 
+         void printInOrder(Node * leaf); 
          Node * root;
 }; 
 #endif
