@@ -140,6 +140,7 @@ Node * BSTree::searchKey(int keySearch, Node * leaf){
      }    
  
 }
+
 /***************************************************
 
 
@@ -164,6 +165,7 @@ void BSTree::printInOrder(){
      printInOrder(root);
      
 }
+
 /***************************************************
 
 
@@ -181,6 +183,65 @@ void BSTree::printInOrder(Node * leaf){
     cout<<leaf->key<<endl;
     printInOrder(leaf->right);
 }
+/***************************************************
+ 
+ 
+ void printPreOrder(Node * leaf);
+ 
+ 
+***************************************************/
+void BSTree::printPreOrder(){
+ 
+     printPreOrder(root);
+     
+}
+/***************************************************
+
+
+void printPreOrder(Node * leaf);
+
+
+***************************************************/
+void BSTree::printPreOrder(Node * leaf){
+
+    if(leaf == NULL){
+        return;
+    }
+
+    cout<<leaf->key<<endl;
+    printPreOrder(leaf->left);
+    printPreOrder(leaf->right);
+}
+/***************************************************
+ 
+ 
+ void printPostOrder(Node * leaf);
+ 
+ 
+***************************************************/
+void BSTree::printPostOrder(){
+ 
+     printPostOrder(root);
+     
+}
+/***************************************************
+
+
+void printPostOrder(Node * leaf);
+
+
+***************************************************/
+void BSTree::printPostOrder(Node * leaf){
+
+    if(leaf == NULL){
+        return;
+    }
+
+    printPostOrder(leaf->left);
+    printPostOrder(leaf->right);
+    cout<<leaf->key<<endl;
+}
+
 /***************************************************
 
 
