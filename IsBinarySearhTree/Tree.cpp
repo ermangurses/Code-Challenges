@@ -7,7 +7,7 @@ using namespace std;
 
 
     Default Constructor
-
+    It created  Binary Tree using data vector
 
 **************************************************/
 Tree::Tree(vector<int> data){
@@ -55,9 +55,7 @@ Tree::Tree(vector<int> data){
 
 ***************************************************/
 Tree::~Tree(){
-
     destroy_Tree();
-
 }
 /***************************************************
 
@@ -69,7 +67,6 @@ Node * search(DataType keySearch);
 Node * Tree::search(int keySearch){
 
     return searchKey(keySearch, root);
-
 }
 
 /***************************************************
@@ -82,24 +79,18 @@ Node * Tree::search(int keySearch){
 Node * Tree::searchKey(int keySearch, Node * leaf){
  
      if(leaf != NULL){
-
          if(keySearch == leaf->key){
             
              return leaf;
          }
          if(keySearch < leaf->key){
-         
              return searchKey(keySearch,leaf->left);             
-
          }else{
-
              return searchKey(keySearch,leaf->right);
          }
      }else{
-
          return NULL;    
      }    
- 
 }
 
 /***************************************************
@@ -231,8 +222,7 @@ bool Tree::isBST(){
 
   isBST(root);
   
-  return flag;
-  
+  return flag;  
 }
 
 /***************************************************

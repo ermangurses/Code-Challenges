@@ -39,8 +39,6 @@ int main(){
     Do the operations in linked list using input.txt file
    
   ******************************************************************************/
-//int data[] = {1,2,3,4,5}; 
-//    int data[] = {4,2,5,1,3};
    
     Tree * tree;
     vector<int> data;
