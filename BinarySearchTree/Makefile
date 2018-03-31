@@ -1,9 +1,13 @@
-driver: driver.o BSTree.o
-	g++ driver.o BSTree.o -o driver
+CXX=g++
+FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic
+
+all: driver.o BSTree.o
+	$(CXX) $(FLAGS) driver.o BSTree.o -o driver
 driver.o: driver.cpp
-	g++ -c driver.cpp -o driver.o
+	$(CXX) $(FLAGS) -c driver.cpp -o driver.o
 BSTree.o: BSTree.cpp BSTree.h
-	g++ -c BSTree.cpp -o BSTree.o
+	$(CXX) $(FLAGS) -c BSTree.cpp -o BSTree.o
 clean:
 	rm *.o driver
 	 
+.PHONY: all clean
