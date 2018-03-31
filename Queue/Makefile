@@ -1,9 +1,13 @@
-driver: driver.o Queue.o
-	g++ driver.o Queue.o -o driver
+CXX=g++
+FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic
+
+all: driver.o Queue.o
+	$(CXX) $(FLAGS) driver.o Queue.o -o driver
 driver.o: driver.cpp
-	g++ -c driver.cpp -o driver.o
+	$(CXX) $(FLAGS) -c driver.cpp -o driver.o
 Queue.o: Queue.cpp Queue.h
-	g++ -c Queue.cpp -o Queue.o
+	$(CXX) $(FLAGS) -c Queue.cpp -o Queue.o
 clean:
 	rm *.o driver
-	 
+
+.PHONY: all clean	 
