@@ -1,7 +1,7 @@
 CXX=g++
 FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic
 
-All: driver.o Tree.o
+all: driver.o Tree.o
 	$(CXX) $(FLAGS) driver.o Tree.o -o driver
 driver.o: driver.cpp
 	$(CXX) $(FLAGS) -c driver.cpp -o driver.o
