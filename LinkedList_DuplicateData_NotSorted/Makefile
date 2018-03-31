@@ -1,7 +1,7 @@
 CXX=g++
 FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic
 
-driver: driver.o LinkedList.o
+all: driver.o LinkedList.o
 	$(CXX) $(FLAGS) driver.o LinkedList.o -o driver
 driver.o: driver.cpp
 	$(CXX) $(FLAGS) -c driver.cpp -o driver.o
