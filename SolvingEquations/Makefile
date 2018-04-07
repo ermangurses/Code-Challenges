@@ -1,12 +1,17 @@
+#Compiler and flags
 CXX=g++
 FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic
 
-all: Driver.o Solver.o
-	$(CXX) $(FLAGS) Driver.o Solver.o -o driver
-Driver.o: Driver.cpp Solver.h
+# Implementation and driver file names
+IMPLEMENTATION=Variable
+DRIVER=Driver
+
+all: Driver.o Variable.o
+	$(CXX) $(FLAGS) Driver.o Variable.o -o driver
+Driver.o: Driver.cpp Variable.h
 	$(CXX) $(FLAGS) -c Driver.cpp -o Driver.o
-Solver.o: Solver.cpp Solver.h
-	$(CXX) $(FLAGS) -c Solver.cpp -o Solver.o
+Variable.o: Variable.cpp Variable.h
+	$(CXX) $(FLAGS) -c Variable.cpp -o Variable.o
 clean:
 	rm *.o driver
  

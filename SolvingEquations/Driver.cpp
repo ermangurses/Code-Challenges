@@ -1,4 +1,4 @@
-#include "Solver.h"
+#include "Variable.h"
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
@@ -13,7 +13,7 @@ using namespace std;
 //
 //********************************************************************
 bool openInputFile(ifstream & inFile, char *argv[]);
-
+void readInputFile(ifstream & inFile);
 
 
 //********************************************************************
@@ -23,7 +23,7 @@ bool openInputFile(ifstream & inFile, char *argv[]);
 //********************************************************************
 int main(int argc, char *argv[]){
 
-   Solver * solver = new Solver();
+   Variable variable;
  
 
    ifstream inFile;
@@ -31,10 +31,12 @@ int main(int argc, char *argv[]){
        return 0;
    } 
    
+   readInputFile(inFile);
 
  return 0;
 }
-//********************************************************************
+
+//******************************************************************************
 // openInputFile Function
 //
 // This function belongs to cons thread it prints vowel words
@@ -57,7 +59,7 @@ int main(int argc, char *argv[]){
 // Local Variables
 // ---------------            
 //
-//********************************************************************
+//******************************************************************************
 bool openInputFile(ifstream & inFile, char *argv[]){
     inFile.open(argv[1]);
     if (!inFile){
@@ -65,5 +67,37 @@ bool openInputFile(ifstream & inFile, char *argv[]){
         return false;
      }
   return true;
+}
+
+//******************************************************************************
+// readInputFile Function
+//
+// This function belongs to cons thread it prints vowel words
+//
+// Return Value
+// ------------
+// void                     No return value
+//
+// Value Parameters
+// ----------------
+//                          No Value Parameters 
+// 
+//
+// Reference Parameters
+// --------------------
+// t            char        Visual ID of thread.           
+//
+// Local Variables
+// ---------------
+// vowTemp      char        Keeps current word
+//
+//******************************************************************************
+void readInputFile(ifstream & inFile){
+
+    string line;
+    while(getline(inFile, line)){
+
+        cout<<"Line: "<<line<<endl;
+    }
 }
 
