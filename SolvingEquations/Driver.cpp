@@ -1,11 +1,9 @@
-#include "MySolver.cpp"
+#include "Solver.h"
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-
-# define SIZE 20
 
 using namespace std;
 
@@ -25,7 +23,7 @@ bool openInputFile(ifstream & inFile, char *argv[]);
 //********************************************************************
 int main(int argc, char *argv[]){
 
-//   Solver * solver = new Solver();
+   Solver * solver = new Solver();
  
 
    ifstream inFile;
