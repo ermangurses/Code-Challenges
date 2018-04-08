@@ -1,4 +1,5 @@
 #include "Variable.h"
+#include <cctype>
 
 //******************************************************************************
 //
@@ -34,15 +35,18 @@ void Variable::parseLine(std::string & line){
  
     std::stringstream ss(line);
     std::string token;
-    while(getline(ss, token, ' ')){ 
-        if(token.find_first_not_of(' ') != std::string::npos){
-            std::cout<<token<<"\n";
+    while (getline(ss, token, ' ')){ 
+        if (token.find_first_not_of(' ') != std::string::npos){
+            if (isalpha(token.at(0))){
+
+                std::cout<<"This is variable: "<<token<<"\n";             
+            } else if (isdigit(token.at(0))){
+
+                std::cout<<"This is unsigned integer: "<<token<<"\n";
+            } else {
+       
+                std::cout<<"This is something else: "<<token<<"\n";
+            }        
         }
     }
-}
-
-void Variable::trim(std::string & token){
-
-    std::string::iterator endPosition = std::remove(token.begin(), token.end(), ' ');
-    token.erase(endPosition, token.end());
-}
+} 
