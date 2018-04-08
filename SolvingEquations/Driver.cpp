@@ -7,31 +7,28 @@
 
 using namespace std;
 
-//********************************************************************
+//******************************************************************************
 //
 // Function Prototypes
 //
-//********************************************************************
+//******************************************************************************
 bool openInputFile(ifstream & inFile, char *argv[]);
-void readInputFile(ifstream & inFile);
+void readInputFile(ifstream & inFile, Variable * variable);
 
 
-//********************************************************************
+//******************************************************************************
 //
 // main function
 //
-//********************************************************************
+//******************************************************************************
 int main(int argc, char *argv[]){
 
-   Variable variable;
- 
-
+   Variable * variable = new Variable();
    ifstream inFile;
    if(!openInputFile(inFile, argv)){   
        return 0;
    } 
-   
-   readInputFile(inFile);
+   readInputFile(inFile,variable);
 
  return 0;
 }
@@ -92,12 +89,11 @@ bool openInputFile(ifstream & inFile, char *argv[]){
 // vowTemp      char        Keeps current word
 //
 //******************************************************************************
-void readInputFile(ifstream & inFile){
+void readInputFile(ifstream & inFile, Variable * variable){
 
     string line;
     while(getline(inFile, line)){
-
-        cout<<"Line: "<<line<<endl;
+        variable->readLine(line);
     }
 }
 
