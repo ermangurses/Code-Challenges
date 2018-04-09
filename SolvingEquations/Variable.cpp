@@ -1,5 +1,4 @@
 #include "Variable.h"
-#include <cctype>
 
 //******************************************************************************
 //
@@ -13,7 +12,15 @@ Variable::Variable(){
 
     the_number_of_dependencies = 0;
     sum_of_unsigned_integers = 0;
+    isVariableNameSet = false;
 }
+
+Variable::Variable(std::string & line){
+
+    parseLine(line);
+
+}
+
 
 //******************************************************************************
 //
@@ -38,41 +45,32 @@ void Variable::parseLine(std::string & line){
     while (getline(ss, token, ' ')){ 
         if (token.find_first_not_of(' ') != std::string::npos){
             if (isalpha(token.at(0))){
-
-                std::cout<<"This is variable: "<<token<<"\n";             
+                
+                if(!isVariableNameSet){
+                    setVariableName(token);
+                    isVariableNameSet = true;
+                } else {
+                    setDependencies(token);                    
+                }
             } else if (isdigit(token.at(0))){
-
-                std::cout<<"This is unsigned integer: "<<token<<"\n";
-            } else {
-       
-                std::cout<<"This is something else: "<<token<<"\n";
+                    sumValues(std::stoul(token,nullptr,0)); 
             }        
         }
     }
 }
 
-void Variable::setVariableName(){
+void Variable::setVariableName(std::string & variable_name){
 
-
+    this->variable_name = variable_name;
 
 }
 
 
-void Variable::setDependencies(){
+void Variable::setDependencies(std::string & dependency_name){
 
-
-
-
+    dependencies.insert(dependency_name);
     the_number_of_dependencies++; 
 }
-
-
-void Variable::setValue(){
-
-
-
-}
-
 
 void Variable::sumValues(unsigned int value){
 
@@ -80,4 +78,25 @@ void Variable::sumValues(unsigned int value){
 
 }
 
+std::string Variable::getVariableName(){
+
+    return *(this->variable_name);
+}
+
+std::unordered_set<std::string> getDependencies(){
+
  
+
+
+}
+
+unsinged int getTheNumberOfDependencies(){
+
+    return the_number_of_dependencies;
+}
+
+unsinged int getTheSumOfInsignedIntegers(){
+
+    return the_sum_of_unsigned_integers;
+}
+
