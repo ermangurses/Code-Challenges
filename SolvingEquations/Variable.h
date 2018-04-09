@@ -25,7 +25,7 @@ class Variable{
     std::set<std::string> dependencies;
     void trim(std::string & token);
     int the_number_of_dependencies;
-    int sum_of_constants;
+    int sum_of_unsigned_integers;
     
 };
 #endif

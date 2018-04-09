@@ -11,8 +11,8 @@
 
 Variable::Variable(){
 
-
-
+    the_number_of_dependencies = 0;
+    sum_of_unsigned_integers = 0;
 }
 
 //******************************************************************************
