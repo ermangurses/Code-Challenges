@@ -93,7 +93,7 @@ void readInputFile(ifstream & inFile, Variable * variable){
 
     string line;
     while(getline(inFile, line)){
-        variable->readLine(line);
+        variable->getLine(line);
     }
 }
 

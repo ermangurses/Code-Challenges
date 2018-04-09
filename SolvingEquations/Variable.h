@@ -18,14 +18,16 @@ class Variable{
   public:
     Variable();
     ~Variable();
-    void readLine(std::string  & line);
-    void parseLine(std::string & line);
+    void getLine(std::string  & line);
   private:
     std::string variable;
     std::set<std::string> dependencies;
-    void trim(std::string & token);
     int the_number_of_dependencies;
     int sum_of_unsigned_integers;
-    
+    void setVariableName();
+    void setDependencies();
+    void setValue();
+    void parseLine(std::string & line);
+    void sumValues(unsigned int value);
 };
 #endif

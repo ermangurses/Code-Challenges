@@ -26,7 +26,7 @@ Variable::~Variable(){
 
 
 }
-void Variable::readLine(std::string & line){
+void Variable::getLine(std::string & line){
 
     parseLine(line);
 }
@@ -49,4 +49,35 @@ void Variable::parseLine(std::string & line){
             }        
         }
     }
-} 
+}
+
+void Variable::setVariableName(){
+
+
+
+}
+
+
+void Variable::setDependencies(){
+
+
+
+
+    the_number_of_dependencies++; 
+}
+
+
+void Variable::setValue(){
+
+
+
+}
+
+
+void Variable::sumValues(unsigned int value){
+
+    sum_of_unsigned_integers += value;
+
+}
+
+ 
