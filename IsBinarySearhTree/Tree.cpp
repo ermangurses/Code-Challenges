@@ -6,7 +6,7 @@ using namespace std;
 /**************************************************
 
 
-    Default Constructor
+    Constructor
     It created  Binary Tree using data vector
 
 **************************************************/
