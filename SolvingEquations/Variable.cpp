@@ -16,7 +16,7 @@ Variable::Variable(){
 //******************************************************************************
 //
 //
-// Overloaded  Constructor 
+// Overloaded Constructor 
 //
 //
 //******************************************************************************
@@ -65,7 +65,6 @@ void Variable::parseLine(std::string & line){
     while (getline(ss, token, ' ')){ 
         if (token.find_first_not_of(' ') != std::string::npos){
             if (isalpha(token.at(0))){
-                
                 if(!isVariableNameSet){
                     setVariableName(token);
                     isVariableNameSet = true;
@@ -78,6 +77,7 @@ void Variable::parseLine(std::string & line){
         }
     }
 }
+
 //******************************************************************************
 //
 //
@@ -90,7 +90,6 @@ std::string Variable::getVariableName(){
     return this->variable_name;
 }
 
-
 //******************************************************************************
 //
 //
@@ -101,7 +100,6 @@ std::string Variable::getVariableName(){
 void Variable::setVariableName(std::string & variable_name){
 
     this->variable_name = variable_name;
-
 }
 
 //******************************************************************************
@@ -114,7 +112,6 @@ void Variable::setVariableName(std::string & variable_name){
 std::unordered_set<std::string> Variable::getDependencies(){
 
    return dependencies;
-
 }
 
 //******************************************************************************
@@ -139,7 +136,6 @@ void Variable::setDependency(std::string & dependency_name){
 bool Variable::removeDependency(std::string & dependency_name){
 
     return dependencies.erase(dependency_name);
-
 }
 
 //******************************************************************************
@@ -190,6 +186,4 @@ unsigned int Variable::getTheSumOfUnsignedIntegers(){
 void Variable::addValue(unsigned int value){
 
     sum_of_unsigned_integers += value;
-
 }
-
