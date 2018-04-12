@@ -167,11 +167,11 @@ unsigned int Variable::getTheNumberOfDependencies(){
 //******************************************************************************
 //
 //
-// getTheSumOfUnsignedIntegers()
+// getTotalValue()
 //
 //
 //******************************************************************************
-unsigned int Variable::getTheSumOfUnsignedIntegers(){
+unsigned int Variable::getTotalValue(){
 
     return sum_of_unsigned_integers;
 }

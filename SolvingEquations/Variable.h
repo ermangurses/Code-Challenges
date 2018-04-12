@@ -42,7 +42,7 @@ class Variable{
 
     std::unordered_set<std::string> getDependencies();
     unsigned int getTheNumberOfDependencies();
-    unsigned int getTheSumOfUnsignedIntegers();
+    unsigned int getTotalValue();
     bool removeDependency(std::string & dependency_name);
 };
 #endif

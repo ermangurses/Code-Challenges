@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 
 
    cout<<endl;
-   cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTheSumOfUnsignedIntegers();
+   cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTotalValue();
    cout<<endl;
 
 
