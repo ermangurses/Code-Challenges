@@ -3,7 +3,7 @@
 //******************************************************************************
 //
 //
-//  Default Costructor 
+//  Default Constructor 
 //
 //
 //******************************************************************************
@@ -16,14 +16,13 @@ Variable::Variable(){
 //******************************************************************************
 //
 //
-//  Costructor 
+// Overloaded  Constructor 
 //
 //
 //******************************************************************************
 Variable::Variable(std::string & line){
 
-    sum_of_unsigned_integers = 0;
-    isVariableNameSet = false;
+    Variable();
     parseLine(line);
 
 }
