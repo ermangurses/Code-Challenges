@@ -23,7 +23,8 @@ Variable::Variable(){
 Variable::Variable(std::string & line){
 
     Variable();
-    parseLine(line);
+    tokenizer(line);
+    parseTokens();
 
 }
 
@@ -47,8 +48,9 @@ Variable::~Variable(){
 //
 //******************************************************************************
 void Variable::getLine(std::string & line){
-
-    parseLine(line);
+    
+    tokenizer(line);  
+    parseTokens();
 }
 
 //******************************************************************************
@@ -58,23 +60,56 @@ void Variable::getLine(std::string & line){
 //
 //
 //******************************************************************************
-void Variable::parseLine(std::string & line){
- 
+void Variable::parseTokens(){
+
+    std::string token;
+   
+    while(getToken(token)){
+        if (isalpha(token.at(0))){
+            if(!isVariableNameSet){ 
+                setVariableName(token);
+                isVariableNameSet = true;
+            } else {
+               setDependency(token);                    
+            }
+        } else if (isdigit(token.at(0))){
+               addValue(std::stoul(token,nullptr,0)); 
+        }
+    }        
+} 
+//******************************************************************************
+//
+//
+// tokenizer(std::string & line)
+//
+//
+//******************************************************************************
+void Variable::tokenizer(std::string & line){
+
     std::stringstream ss(line);
     std::string token;
-    while (getline(ss, token, ' ')){ 
-        if (token.find_first_not_of(' ') != std::string::npos){
-            if (isalpha(token.at(0))){
-                if(!isVariableNameSet){
-                    setVariableName(token);
-                    isVariableNameSet = true;
-                } else {
-                    setDependency(token);                    
-                }
-            } else if (isdigit(token.at(0))){
-                    addValue(std::stoul(token,nullptr,0)); 
-            }        
+    while( getline(ss, token, ' ') ){
+        if( token.find_first_not_of(' ') != std::string::npos ){
+            tokens.push(token);
         }
+    }
+}
+//******************************************************************************
+//
+//
+// getToken()
+//
+//
+//
+//******************************************************************************
+bool Variable::getToken(std::string & token){
+
+    if(!tokens.empty()){
+        token = tokens.front();
+        tokens.pop();
+      return true;
+    } else {
+      return false;
     }
 }
 
@@ -85,7 +120,7 @@ void Variable::parseLine(std::string & line){
 //
 //
 //******************************************************************************
-std::string Variable::getVariableName(){
+std::string & Variable::getVariableName(){
 
     return this->variable_name;
 }
@@ -105,13 +140,16 @@ void Variable::setVariableName(std::string & variable_name){
 //******************************************************************************
 //
 //
-// getDependencies()
+// getDependency()
 //
 //
 //******************************************************************************
-std::unordered_set<std::string> Variable::getDependencies(){
+std::string & Variable::getDependency(){
 
-   return dependencies;
+ //   for (const auto & element: dependencies) {
+   //     std::cout<<element<<"\n";
+   // }
+
 }
 
 //******************************************************************************
@@ -163,6 +201,18 @@ unsigned int Variable::getTheNumberOfDependencies(){
 
     return dependencies.size();
 }         
+
+//******************************************************************************
+//
+//
+// isDependencySetEmpty()
+//
+//
+//******************************************************************************
+bool Variable::isDependencySetEmpty(){
+
+    return (dependencies.size() == 0);
+}
 
 //******************************************************************************
 //
