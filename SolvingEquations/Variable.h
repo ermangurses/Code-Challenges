@@ -22,27 +22,22 @@ class Variable{
     Variable();
     Variable(std::string & line);
    ~Variable();
-
-    void getLine(std::string  & line);
-    void setVariableName(std::string & variable_name);
-    std::string getVariableName();
-    void printDependencies();
-
-//  private:
-    std::string variable_name;
-    std::unordered_set<std::string> dependencies;
-    unsigned int sum_of_unsigned_integers;
-    bool isVariableNameSet;
-
-
-    void setDependency(std::string & dependency_name);
-    void parseLine(std::string & line);
-    void addValue(unsigned int value);
-
-
+                               void getLine(std::string  & line);
+                        std::string getVariableName();
     std::unordered_set<std::string> getDependencies();
-    unsigned int getTheNumberOfDependencies();
-    unsigned int getTotalValue();
-    bool removeDependency(std::string & dependency_name);
+                               bool removeDependency(std::string & dependency_name);
+                               void printDependencies();
+                       unsigned int getTheNumberOfDependencies();
+                       unsigned int getTotalValue();
+  private:
+                        std::string variable_name;
+    std::unordered_set<std::string> dependencies;
+                       unsigned int sum_of_unsigned_integers;
+                               bool isVariableNameSet;
+
+    void parseLine(std::string & line);
+    void setVariableName(std::string & variable_name);
+    void setDependency(std::string & dependency_name);
+    void addValue(unsigned int value);
 };
-#endif
+#endif // VARIABLE_H
