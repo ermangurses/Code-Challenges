@@ -28,7 +28,6 @@ int main(int argc, char *argv[]){
        return 0;
    } 
 
-   string str = "Erman Gurses";
 
    readInputFile(inFile,variable);
 
@@ -42,7 +41,26 @@ int main(int argc, char *argv[]){
 
 
    cout<<endl;
-   cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTheSumOfInsignedIntegers();
+   cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTheSumOfUnsignedIntegers();
+   cout<<endl;
+
+
+   cout<<endl;
+   variable->printDependencies();
+   cout<<endl;
+
+   string str = "random";
+   cout<<endl;
+   variable->removeDependency(str);
+   cout<<endl;
+
+   cout<<endl;
+   variable->printDependencies();
+   cout<<endl;
+
+
+   cout<<endl;
+   cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
    cout<<endl;
 
  return 0;
