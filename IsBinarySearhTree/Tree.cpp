@@ -7,7 +7,7 @@ using namespace std;
 
 
     Constructor
-    It created  Binary Tree using data vector
+    The Binary Tree is created using data vector
 
 **************************************************/
 Tree::Tree(vector<int> data){
