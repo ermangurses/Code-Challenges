@@ -7,7 +7,6 @@
 //
 //
 //******************************************************************************
-
 Variable::Variable(){
 
     the_number_of_dependencies = 0;
@@ -15,6 +14,13 @@ Variable::Variable(){
     isVariableNameSet = false;
 }
 
+//******************************************************************************
+//
+//
+//  Costructor 
+//
+//
+//******************************************************************************
 Variable::Variable(std::string & line){
 
     parseLine(line);
@@ -33,11 +39,27 @@ Variable::~Variable(){
 
 
 }
+
+//******************************************************************************
+//
+//
+//  Destructor
+//
+//
+//******************************************************************************
 void Variable::getLine(std::string & line){
 
     parseLine(line);
 }
 
+
+//******************************************************************************
+//
+//
+//  Destructor
+//
+//
+//******************************************************************************
 void Variable::parseLine(std::string & line){
  
     std::stringstream ss(line);
@@ -53,50 +75,89 @@ void Variable::parseLine(std::string & line){
                     setDependencies(token);                    
                 }
             } else if (isdigit(token.at(0))){
-                    sumValues(std::stoul(token,nullptr,0)); 
+                    addValues(std::stoul(token,nullptr,0)); 
             }        
         }
     }
 }
-
+//******************************************************************************
+//
+//
+//  setVariableName(std::string & variable_name);
+//
+//
+//******************************************************************************
 void Variable::setVariableName(std::string & variable_name){
 
     this->variable_name = variable_name;
 
 }
 
-
+//******************************************************************************
+//
+//
+// setDependencies(std::string & dependency_name)
+//
+//
+//******************************************************************************
 void Variable::setDependencies(std::string & dependency_name){
 
     dependencies.insert(dependency_name);
     the_number_of_dependencies++; 
 }
 
-void Variable::sumValues(unsigned int value){
+//******************************************************************************
+//
+//
+//
+//
+//******************************************************************************
+void Variable::addValue(unsigned int value){
 
     sum_of_unsigned_integers += value;
 
 }
 
+//******************************************************************************
+//
+//
+//
+//
+//******************************************************************************
 std::string Variable::getVariableName(){
 
-    return *(this->variable_name);
+    return this->variable_name;
 }
 
-std::unordered_set<std::string> getDependencies(){
-
- 
-
+//******************************************************************************
+//
+//
+//
+//
+//******************************************************************************
+std::unordered_set<std::string> Variable::getDependencies(){
 
 }
 
-unsinged int getTheNumberOfDependencies(){
+//******************************************************************************
+//
+//
+//
+//
+//******************************************************************************
+unsigned int Variable::getTheNumberOfDependencies(){
 
     return the_number_of_dependencies;
-}
+}         
 
-unsinged int getTheSumOfInsignedIntegers(){
+//******************************************************************************
+//
+//
+//
+//
+//******************************************************************************
+unsigned int Variable::getTheSumOfUnsignedIntegers(){
 
-    return the_sum_of_unsigned_integers;
+    return sum_of_unsigned_integers;
 }
 

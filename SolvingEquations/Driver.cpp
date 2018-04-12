@@ -6,7 +6,6 @@
 #include <iomanip>
 
 using namespace std;
-
 //******************************************************************************
 //
 // Function Prototypes
@@ -28,7 +27,23 @@ int main(int argc, char *argv[]){
    if(!openInputFile(inFile, argv)){   
        return 0;
    } 
+
+   string str = "Erman Gurses";
+
    readInputFile(inFile,variable);
+
+   cout<<endl;
+   cout<<"variable->getVariableName(): "<<variable->getVariableName();
+   cout<<endl;
+
+   cout<<endl;
+   cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
+   cout<<endl;
+
+
+   cout<<endl;
+   cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTheSumOfInsignedIntegers();
+   cout<<endl;
 
  return 0;
 }

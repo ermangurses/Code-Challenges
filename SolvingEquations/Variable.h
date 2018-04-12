@@ -1,9 +1,10 @@
-/******************************************************************************
+//******************************************************************************
 //
 //
 //
 //
-*****************************************************************************/
+//******************************************************************************
+
 #ifndef VARIABLE_H
 #define VARIABLE_H
 
@@ -22,21 +23,21 @@ class Variable{
     Variable(std::string & line);
     ~Variable();
     void getLine(std::string  & line);
+    void setVariableName(std::string & variable_name);
+    std::string getVariableName();
 
-  private:
+//  private:
     std::string variable_name;
     std::unordered_set<std::string> dependencies;
-    int the_number_of_dependencies;
-    unsigned int the_sum_of_unsigned_integers;
+    unsigned int the_number_of_dependencies;
+    unsigned int sum_of_unsigned_integers;
     bool isVariableNameSet;
-    void setVariableName(std::string & variable_name);
     void setDependencies(std::string & dependency_name);
     void parseLine(std::string & line);
-    void sumValues(unsigned int value);
-    std::string getVariableName();
+    void addValues(unsigned int value);
     std::unordered_set<std::string> getDependencies();
-    unsinged int getTheNumberOfDependencies();
-    unsinged int getTheSumOfInsignedIntegers();
+    unsigned int getTheNumberOfDependencies();
+    unsigned int getTheSumOfUnsignedIntegers();
     
 };
 #endif
