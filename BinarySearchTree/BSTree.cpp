@@ -12,7 +12,7 @@ using namespace std;
 **************************************************/
 BSTree::BSTree(){
 
-    root  = NULL;
+    root  = nullptr;
 }
 /**************************************************
 
@@ -36,13 +36,13 @@ bool insert(DataType keyIn);
 ***************************************************/
 void BSTree::insert(int keyIn){
 
-    if(root != NULL){
+    if(root != nullptr){
         insert(keyIn,root);
     }else{
         root = new Node;
         root->key = keyIn;
-        root->left = NULL;
-        root->right = NULL;
+        root->left = nullptr;
+        root->right = nullptr;
     }
 }
 
@@ -58,26 +58,26 @@ void BSTree::insert(int keyIn, Node * leaf){
 
     if( keyIn < leaf->key){
      
-        if(leaf->left != NULL){
+        if(leaf->left != nullptr){
 
             insert(keyIn,leaf->left);
         }else{
            
             leaf->left = new Node;
             leaf->left->key = keyIn;
-            leaf->left->left = NULL; 
-            leaf->left->right  = NULL;
+            leaf->left->left = nullptr; 
+            leaf->left->right  = nullptr;
         }     
     }else if(keyIn >= leaf->key){
           
-        if(leaf->right != NULL){
+        if(leaf->right != nullptr){
       
             insert(keyIn,leaf->right);
         }else{
             leaf->right = new Node;
             leaf->right->key = keyIn;
-            leaf->right->left = NULL;
-            leaf->right->right= NULL;
+            leaf->right->left = nullptr;
+            leaf->right->right= nullptr;
         }
     }
 }
@@ -94,7 +94,7 @@ Node * remove(DataType keyOut);
 Node * BSTree::remove(int keyOut){
 
 
- return NULL;
+ return nullptr;
 }
 
 
@@ -120,7 +120,7 @@ Node * BSTree::search(int keySearch){
 ***************************************************/
 Node * BSTree::searchKey(int keySearch, Node * leaf){
  
-     if(leaf != NULL){
+     if(leaf != nullptr){
 
          if(keySearch == leaf->key){
             
@@ -130,15 +130,14 @@ Node * BSTree::searchKey(int keySearch, Node * leaf){
          
              return searchKey(keySearch,leaf->left);             
 
-         }else{
+         } else {
 
              return searchKey(keySearch,leaf->right);
          }
-     }else{
+     } else {
 
-         return NULL;    
-     }    
- 
+         return nullptr;    
+     }     
 }
 
 /***************************************************
@@ -175,7 +174,7 @@ void printInOrder(Node * leaf);
 ***************************************************/
 void BSTree::printInOrder(Node * leaf){
 
-    if(leaf == NULL){
+    if(leaf == nullptr){
         return;
     }
 
@@ -204,7 +203,7 @@ void printPreOrder(Node * leaf);
 ***************************************************/
 void BSTree::printPreOrder(Node * leaf){
 
-    if(leaf == NULL){
+    if(leaf == nullptr){
         return;
     }
 
@@ -233,7 +232,7 @@ void printPostOrder(Node * leaf);
 ***************************************************/
 void BSTree::printPostOrder(Node * leaf){
 
-    if(leaf == NULL){
+    if(leaf == nullptr){
         return;
     }
 
@@ -250,7 +249,7 @@ void destroy_tree(Node * leaf);
 
 ***************************************************/
 void BSTree::destroyTree(Node * leaf){   
-     if(leaf != NULL){
+     if(leaf != nullptr){
     
         destroyTree(leaf->left);
         destroyTree(leaf->right);
