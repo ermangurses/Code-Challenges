@@ -25,7 +25,7 @@ class Variable{
    ~Variable();
                                void getLine(std::string  & line);
                       std::string & getVariableName();
-                      std::string & getDependency();
+                               bool getDependency(std::string & dependency);
                                bool removeDependency(std::string & dependency_name);
                                void printDependencies();
                        unsigned int getTheNumberOfDependencies();

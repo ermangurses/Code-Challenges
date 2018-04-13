@@ -94,6 +94,7 @@ void Variable::tokenizer(std::string & line){
         }
     }
 }
+
 //******************************************************************************
 //
 //
@@ -144,11 +145,16 @@ void Variable::setVariableName(std::string & variable_name){
 //
 //
 //******************************************************************************
-std::string & Variable::getDependency(){
+bool Variable::getDependency(std::string & dependency){
 
- //   for (const auto & element: dependencies) {
-   //     std::cout<<element<<"\n";
-   // }
+    if(!dependencies.empty()){
+        auto it = dependencies.begin();
+        dependency = *it; 
+        dependencies.erase(dependency);
+      return true;
+    } else {
+      return false;
+    }
 
 }
 

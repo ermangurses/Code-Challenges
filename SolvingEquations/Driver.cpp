@@ -63,6 +63,21 @@ int main(int argc, char *argv[]){
    cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
    cout<<endl;
 
+   string strr;
+
+   while(variable->getDependency(strr)){
+       cout<<"strr->>  "<<strr<<endl;
+   }
+
+   cout<<endl;
+   variable->printDependencies();
+   cout<<endl;
+
+
+   cout<<endl;
+   cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
+   cout<<endl;
+
  return 0;
 }
 
