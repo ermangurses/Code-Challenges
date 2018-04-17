@@ -4,7 +4,8 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-
+#include <map>
+#include <set>
 using namespace std;
 //******************************************************************************
 //
@@ -12,8 +13,8 @@ using namespace std;
 //
 //******************************************************************************
 bool openInputFile(ifstream & inFile, char *argv[]);
-void readInputFile(ifstream & inFile, Variable * variable);
-
+void readInputFile(ifstream & inFile, map<string,Variable> & variableSet);
+void constructSet(map<string,Variable> & variableSet, string line);
 
 //******************************************************************************
 //
@@ -22,15 +23,22 @@ void readInputFile(ifstream & inFile, Variable * variable);
 //******************************************************************************
 int main(int argc, char *argv[]){
 
-   Variable * variable = new Variable();
    ifstream inFile;
+
    if(!openInputFile(inFile, argv)){   
        return 0;
    } 
 
+   map<string,Variable> variableSet;
+   
+   readInputFile(inFile,variableSet);
 
-   readInputFile(inFile,variable);
 
+   for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
+       cout << it->first<<"    "<<it->second.getTotalValue()<<endl;
+   } 
+
+   /*
    cout<<endl;
    cout<<"variable->getVariableName(): "<<variable->getVariableName();
    cout<<endl;
@@ -39,11 +47,9 @@ int main(int argc, char *argv[]){
    cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
    cout<<endl;
 
-
    cout<<endl;
    cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTotalValue();
    cout<<endl;
-
 
    cout<<endl;
    variable->printDependencies();
@@ -73,11 +79,10 @@ int main(int argc, char *argv[]){
    variable->printDependencies();
    cout<<endl;
 
-
    cout<<endl;
    cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
    cout<<endl;
-
+   */
  return 0;
 }
 
@@ -137,11 +142,20 @@ bool openInputFile(ifstream & inFile, char *argv[]){
 // vowTemp      char        Keeps current word
 //
 //******************************************************************************
-void readInputFile(ifstream & inFile, Variable * variable){
+void readInputFile(ifstream & inFile,  map<string,Variable> & variableSet){
 
     string line;
+
     while(getline(inFile, line)){
-        variable->getLine(line);
+        constructSet(variableSet,line);
     }
+}
+
+void constructSet(map<string,Variable> & variableSet, string line){
+ 
+    Variable variable;
+    variable.getLine(line);
+    variableSet.insert(make_pair(variable.getVariableName(),variable)); 
+ 
 }
 
