@@ -12,7 +12,6 @@ template<class T>
 LinkedList<T>::LinkedList(){
  
   head = nullptr;
-  size = 0;
 
 }
 /******************************************************************************
@@ -26,14 +25,12 @@ template<class T>
 LinkedList<T>::~LinkedList(){
 
     Node * iter = head;
-    Node * temp = head;
+    Node * temp;
 
-    while(iter != nullptr){
-        
+    while(iter->next != nullptr){
+        temp = iter;
         iter = iter->next;
         delete temp;
-        temp = iter;
-
     }
     head = nullptr;
 }
@@ -49,22 +46,19 @@ template<class T>
 void LinkedList<T>::insertHead(T dataNew){
 
     Node * newNode = new Node;
-    newNode->dataIn = dataNew;
+    newNode->dataIn = dataNew;   
 
     if(!head){
-
+        
         head = newNode;
         newNode->next = nullptr;
-
+    
     } else {
 
-       newNode->next = head;
-       head = newNode;
+        newNode->next = head;
+        head = newNode;
     }
-    ++size;
 }
-
-
 /******************************************************************************
 //
 //
@@ -78,19 +72,16 @@ void LinkedList<T>::insertTail(T dataNew){
     Node * newNode = new Node;
     newNode->dataIn = dataNew;
     newNode->next = nullptr;
-    
+
     if(!head){
-
         head = newNode;
-
     } else {
- 
         Node * iter = head;
         while(iter->next != nullptr){
             iter = iter->next;
         }
         iter->next = newNode;
-   }
+    }
 }
 
 /******************************************************************************

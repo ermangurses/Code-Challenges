@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "List.h"
 
 template<class T>
 class LinkedList : public List{

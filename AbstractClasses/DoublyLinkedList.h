@@ -1,5 +1,5 @@
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef DOUBLYLINKEDLIST_H
+#define DOUBLYLINKEDLIST_H
 
 #include <cstdlib>
 #include <iostream>
@@ -18,7 +18,7 @@ struct Node {
        ~DoublyLinkedList();
         void insertHead(T dataNew);
         void insertTail(T dataNew);
-        void printLinkedList();
+        void printList();
     private:
        Node * head;
           

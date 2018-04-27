@@ -1,10 +1,10 @@
-#include "LinkedList.cpp"
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
 #include <sstream>
 #include <iomanip>
 #include <unistd.h>
+#include "LinkedList.h"
 
 #define SIZE 16
 #define SIZE1 9

@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <iostream>
 
-
 template<class T>
 class List{
 
@@ -12,7 +11,6 @@ struct Node {
        T   dataIn;
     Node * next;
 };
-
     public:
         List(void);
        ~List(void);
@@ -20,7 +18,6 @@ struct Node {
         virtual void insertTail(T dataNew);
         virtual void printList();
     private:
-       Node * head;
-          
+       Node * head;          
 };
 #endif
