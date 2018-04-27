@@ -1,7 +1,7 @@
-offset = 4 + 49 + 54 + x1 + x2 + x3 + 43
-x1 = 32 + 32 + 34 + x2
-x2 = x3 + 32 + 45 + 23
-x3 = 32
-x4 = x5 + 54 + 32 + x6
-x5 = x6 + 1
-x6 = 5
+offset = 11 + 19 + 10 + xxx + 20
+xxx = 32 + 34 + 34 + yyy
+yyy = ddd + 32 + 45 + 23
+zzz = 32
+ccc = 55 + ddd + zzz
+aaa = ddd + 1
+ddd = 5
