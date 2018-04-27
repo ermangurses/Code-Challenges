@@ -5,7 +5,6 @@
 #include <sstream>
 #include <iomanip>
 #include <map>
-#include <set>
 using namespace std;
 //******************************************************************************
 //
@@ -15,6 +14,7 @@ using namespace std;
 bool openInputFile(ifstream & inFile, char *argv[]);
 void readInputFile(ifstream & inFile, map<string,Variable> & variableSet);
 void constructSet(map<string,Variable> & variableSet, string line);
+void solve (Variable & it, map<string,Variable> & variableSet);
 
 //******************************************************************************
 //
@@ -32,59 +32,48 @@ int main(int argc, char *argv[]){
    map<string,Variable> variableSet;
    
    readInputFile(inFile,variableSet);
-
+   
+   string str;
 
    for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
-       cout << it->first<<"    "<<it->second.getTotalValue()<<endl;
+
+       if ( !(it->second.isDependencySetEmpty()) ){
+
+           solve(it->second,variableSet);
+       }
+
    } 
 
-   /*
-   cout<<endl;
-   cout<<"variable->getVariableName(): "<<variable->getVariableName();
-   cout<<endl;
+   for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
 
-   cout<<endl;
-   cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
-   cout<<endl;
+      cout<< it->first<<"  "<<it->second.getTotalValue()<<endl;
+      cout<< it->first<<"  "<<it->second.getTheNumberOfDependencies()<<endl<<endl;
+   }  
 
-   cout<<endl;
-   cout<<"getTheSumOfInsignedIntegers(): "<<variable->getTotalValue();
-   cout<<endl;
-
-   cout<<endl;
-   variable->printDependencies();
-   cout<<endl;
-
-   string str = "random";
-   cout<<endl;
-   variable->removeDependency(str);
-   cout<<endl;
-
-   cout<<endl;
-   variable->printDependencies();
-   cout<<endl;
-
-
-   cout<<endl;
-   cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
-   cout<<endl;
-
-   string strr;
-
-   while(variable->getDependency(strr)){
-       cout<<"strr->>  "<<strr<<endl;
-   }
-
-   cout<<endl;
-   variable->printDependencies();
-   cout<<endl;
-
-   cout<<endl;
-   cout<<"getTheNumberOfDependencies(): "<<variable->getTheNumberOfDependencies();
-   cout<<endl;
-   */
  return 0;
 }
+
+void solve (Variable & it, map<string,Variable> & variableSet){
+     
+     cout<<"Solved is called"<<endl;
+     string str;
+     it.getDependency(str);
+     Variable var = variableSet.find(str)->second;
+    
+     if( var.isDependencySetEmpty() ){
+
+
+         it.addValue(var.getTotalValue());
+         cout<<"it.getTotalValue()"<<it.getTotalValue()<<endl;
+         return;
+     }else{
+     
+          solve(var,variableSet);
+     }
+
+}
+
+
 
 //******************************************************************************
 // openInputFile Function
@@ -142,7 +131,7 @@ bool openInputFile(ifstream & inFile, char *argv[]){
 // vowTemp      char        Keeps current word
 //
 //******************************************************************************
-void readInputFile(ifstream & inFile,  map<string,Variable> & variableSet){
+void readInputFile(ifstream & inFile,  map<string, Variable> & variableSet){
 
     string line;
 
@@ -151,7 +140,31 @@ void readInputFile(ifstream & inFile,  map<string,Variable> & variableSet){
     }
 }
 
-void constructSet(map<string,Variable> & variableSet, string line){
+//******************************************************************************
+// constructSet Function
+//
+// This function belongs to cons thread it prints vowel words
+//
+// Return Value
+// ------------
+// void                     No return value
+//
+// Value Parameters
+// ----------------
+//                          No Value Parameters 
+// 
+//
+// Reference Parameters
+// --------------------
+// t            char        Visual ID of thread.           
+//
+// Local Variables
+// ---------------
+// vowTemp      char        Keeps current word
+//
+//******************************************************************************
+
+void constructSet(map<string, Variable>  & variableSet, string line){
  
     Variable variable;
     variable.getLine(line);
