@@ -147,7 +147,7 @@ void Variable::setVariableName(std::string & variable_name){
 //******************************************************************************
 bool Variable::getDependency(std::string & dependency){
 
-    if(!dependencies.empty()){
+    if(!dependencies.empty()) {
         auto it = dependencies.begin();
         dependency = *it; 
         dependencies.erase(dependency);
@@ -155,7 +155,6 @@ bool Variable::getDependency(std::string & dependency){
     } else {
       return false;
     }
-
 }
 
 //******************************************************************************

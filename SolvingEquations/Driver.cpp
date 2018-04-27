@@ -11,10 +11,10 @@ using namespace std;
 // Function Prototypes
 //
 //******************************************************************************
-bool openInputFile(ifstream & inFile, char *argv[]);
-void readInputFile(ifstream & inFile, map<string,Variable> & variableSet);
-void constructSet(map<string,Variable> & variableSet, string line);
-void solve (Variable & it, map<string,Variable> & variableSet);
+bool openInputFile (ifstream & inFile, char *argv[]);
+void readInputFile (ifstream & inFile, map<string,Variable> & variableSet);
+void constructSet (map<string,Variable> & variableSet, string line);
+void solve (Variable & it, map<string,Variable> & variableSet, int count);
 
 //******************************************************************************
 //
@@ -24,51 +24,49 @@ void solve (Variable & it, map<string,Variable> & variableSet);
 int main(int argc, char *argv[]){
 
    ifstream inFile;
-
    if(!openInputFile(inFile, argv)){   
        return 0;
    } 
-
    map<string,Variable> variableSet;
-   
    readInputFile(inFile,variableSet);
-   
    string str;
-
+    
+   int count = 0;
    for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
-
+       count++;
        if ( !(it->second.isDependencySetEmpty()) ){
-
-           solve(it->second,variableSet);
+           solve(it->second,variableSet, count);
        }
-
    } 
 
    for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
-
       cout<< it->first<<"  "<<it->second.getTotalValue()<<endl;
       cout<< it->first<<"  "<<it->second.getTheNumberOfDependencies()<<endl<<endl;
    }  
-
  return 0;
 }
 
-void solve (Variable & it, map<string,Variable> & variableSet){
+void solve (Variable & var, map<string,Variable> & variableSet, int count){
+
+     cout<<"count is "<<count<<endl;
+
+     string dependency_name;
+
+     var.getDependency(dependency_name);
+
+     cout<<"Dependency of "<< var.getVariableName()<<" is "<<dependency_name<<endl;
+
+     Variable dependency = variableSet.find(dependency_name)->second;
      
-     cout<<"Solved is called"<<endl;
-     string str;
-     it.getDependency(str);
-     Variable var = variableSet.find(str)->second;
-    
-     if( var.isDependencySetEmpty() ){
+     if( dependency.isDependencySetEmpty() ){
+         var.addValue(dependency.getTotalValue());
 
-
-         it.addValue(var.getTotalValue());
-         cout<<"it.getTotalValue()"<<it.getTotalValue()<<endl;
+         cout<<var.getVariableName()<<"  dependency.getTotalValue()  "<<dependency.getTotalValue()<<endl;
+         cout<<var.getVariableName()<<" getTotalValue()  "<<var.getTotalValue()<<endl;     
          return;
-     }else{
+     } else {
      
-          solve(var,variableSet);
+         solve(dependency,variableSet,count);
      }
 
 }

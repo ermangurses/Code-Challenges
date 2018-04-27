@@ -1,7 +1,4 @@
-offset = 11 + 19 + 10 + xxx + 20
-xxx = 32 + 34 + 34 + yyy
-yyy = ddd + 32 + 45 + 23
-zzz = 32
-ccc = 55 + ddd + zzz
-aaa = ddd + 1
+aaa = 11 + bbb + 20
+bbb = 32 + ccc
+ccc = ddd + 32 + 23
 ddd = 5
