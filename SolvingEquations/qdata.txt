@@ -1,4 +1,4 @@
 aaa = 11 + bbb + 20
-bbb = 32 + ccc
+bbb = 32 + ccc 
 ccc = ddd + 32 + 23
 ddd = 5
