@@ -9,8 +9,10 @@
 //******************************************************************************
 Variable::Variable(){
 
-    sum_of_unsigned_integers = 0;
+    sum_of_unsigned_integers = new unsigned int;
+    * sum_of_unsigned_integers = 0;
     isVariableNameSet = false;
+    dependencies = new std::unordered_set<std::string>;
 }
 
 //******************************************************************************
@@ -147,10 +149,10 @@ void Variable::setVariableName(std::string & variable_name){
 //******************************************************************************
 bool Variable::getDependency(std::string & dependency){
 
-    if(!dependencies.empty()) {
-        auto it = dependencies.begin();
+    if(!dependencies->empty()) {
+        auto it = dependencies->begin();
         dependency = *it; 
-        dependencies.erase(dependency);
+        dependencies->erase(dependency);
       return true;
     } else {
       return false;
@@ -166,7 +168,7 @@ bool Variable::getDependency(std::string & dependency){
 //******************************************************************************
 void Variable::setDependency(std::string & dependency_name){
 
-    dependencies.insert(dependency_name);
+    dependencies->insert(dependency_name);
 }
 
 //******************************************************************************
@@ -178,7 +180,7 @@ void Variable::setDependency(std::string & dependency_name){
 //******************************************************************************
 bool Variable::removeDependency(std::string & dependency_name){
 
-    return dependencies.erase(dependency_name);
+    return dependencies->erase(dependency_name);
 }
 
 //******************************************************************************
@@ -190,7 +192,7 @@ bool Variable::removeDependency(std::string & dependency_name){
 //******************************************************************************
 bool Variable::printDependencies(){
 
-    for (const auto & element: dependencies) {
+    for (const auto & element: *dependencies) {
         std::cout<<element<<"\n";
     }
   return true;
@@ -205,7 +207,7 @@ bool Variable::printDependencies(){
 //******************************************************************************
 unsigned int Variable::getTheNumberOfDependencies(){
 
-    return dependencies.size();
+    return dependencies->size();
 }         
 
 //******************************************************************************
@@ -217,7 +219,7 @@ unsigned int Variable::getTheNumberOfDependencies(){
 //******************************************************************************
 bool Variable::isDependencySetEmpty(){
 
-    return (dependencies.size() == 0);
+    return (dependencies->size() == 0);
 }
 
 //******************************************************************************
@@ -229,7 +231,7 @@ bool Variable::isDependencySetEmpty(){
 //******************************************************************************
 unsigned int Variable::getTotalValue(){
 
-    return sum_of_unsigned_integers;
+    return (*sum_of_unsigned_integers);
 }
 
 //******************************************************************************
@@ -241,5 +243,5 @@ unsigned int Variable::getTotalValue(){
 //******************************************************************************
 void Variable::addValue(unsigned int value){
 
-    sum_of_unsigned_integers += value;
+   (*sum_of_unsigned_integers) += value;
 }

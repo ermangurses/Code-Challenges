@@ -38,8 +38,8 @@ class Variable{
     // variables
     std::string line; 
     std::string variable_name;
-    std::unordered_set<std::string> dependencies;
-    unsigned int sum_of_unsigned_integers;
+    std::unordered_set<std::string> * dependencies;
+    unsigned int * sum_of_unsigned_integers;
     bool isVariableNameSet;
     std::unordered_set<std::string>::iterator iter;
     std::queue<std::string> tokens;
