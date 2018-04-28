@@ -14,7 +14,7 @@ using namespace std;
 bool openInputFile (ifstream & inFile, char *argv[]);
 void readInputFile (ifstream & inFile, map<string,Variable> & variableSet);
 void constructSet (map<string,Variable> & variableSet, string line);
-unsigned int solve (map<string,Variable>::iterator var, map<string,Variable> & variableSet, int count);
+unsigned int solve (map<string,Variable>::iterator var, map<string,Variable> & variableSet);
 
 //******************************************************************************
 //
@@ -32,19 +32,14 @@ int main(int argc, char *argv[]){
    string str;
 
    for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
-      cout<< it->first<<"  "<<it->second.getTotalValue()<<endl;
-      cout<< it->first<<"  "<<it->second.getTheNumberOfDependencies()<<endl<<endl;
+       cout<< it->first<<"  "<<it->second.getTotalValue()<<endl;
+       cout<< it->first<<"  "<<it->second.getTheNumberOfDependencies()<<endl<<endl;
    }
     
-   int count = 0;
    for(auto it = variableSet.begin(); it != variableSet.end(); ++it){
-       count++;
-       if ( !(it->second.isDependencySetEmpty()) ){
-           //cout<<it->second.getVariableName()<<"Main_getTheNumberOfDependencies()"<<it->second.getTheNumberOfDependencies()<<endl;
-            it->second.addValue((solve(it,variableSet, count)));
-           cout<<endl;
-           // cout<<"Hello "<<it->first<<"  "<<it->second.getTotalValue()<<endl;
-           // cout<<"solve(it->second,variableSet, count):"<< solve(it->second,variableSet, count)<<endl;
+
+       while ( !(it->second.isDependencySetEmpty()) ){
+           solve(it,variableSet);
        }
    } 
    cout<<endl<<endl;
@@ -55,33 +50,20 @@ int main(int argc, char *argv[]){
  return 0;
 }
 
-unsigned int solve (map<string,Variable>::iterator var, map<string,Variable> & variableSet, int count){
+unsigned int solve (map<string,Variable>::iterator var, map<string,Variable> & variableSet){
 
-     //cout<<"count is "<<count<<endl;
-
-     string dependency_name;
-
-     //cout<<var.getVariableName()<<" var.getTotalValue(): "<<var.getTotalValue()<<endl;
-
-     var->second.getDependency(dependency_name);
-     //cout<<"Dependency of "<< var.getVariableName()<<" is "<<dependency_name<<endl;
-     //cout<<"getTheNumberOfDependencies()"<<var.getTheNumberOfDependencies()<<endl;
-     std::map<string,Variable>::iterator  dependencyIt = variableSet.find(dependency_name);
-     
-     if( dependencyIt->second.isDependencySetEmpty() ){
+    string dependency_name;
+    var->second.getDependency(dependency_name);
+    std::map<string,Variable>::iterator  dependencyIt = variableSet.find(dependency_name);     
+    
+    if( dependencyIt->second.isDependencySetEmpty() ){
 
         var->second.addValue(dependencyIt->second.getTotalValue());
-        cout<<endl;
-//        cout<<var->second.getVariableName()<<"  dependency.getTotalValue()  "<<dependencyIt->second.getTotalValue()<<endl;
-        //cout<<var.getVariableName()<<" getTotalValue()  "<<var.getTotalValue()<<endl;     
-        return var->second.getTotalValue();
-
      } else {
-        //cout<<"Count: "<<count<<endl;  
-    //    cout<<"Erman G"<<var->second.getVariableName()<<" var->second.getTotalValue(): "<<var->second.getTotalValue()<<endl;
-        var->second.addValue(solve(dependencyIt,variableSet,count));
-        cout<<var->second.getVariableName()<<" var->second.getTotalValue(): "<<var->second.getTotalValue()<<endl;
+
+        var->second.addValue(solve(dependencyIt,variableSet));
      }
+     return var->second.getTotalValue();
 }
 
 
