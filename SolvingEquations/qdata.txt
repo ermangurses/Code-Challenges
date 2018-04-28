@@ -1,4 +1,6 @@
-aaa = 11 + bbb + 20
-bbb = 32 + ccc 
-ccc = ddd + 32 + 23
-ddd = 5
+aaa = bbb + ddd + 10
+bbb = ccc + ddd + 10
+ccc = ddd + 10
+ddd = eee + 10
+eee = fff + 10
+fff = 10
