@@ -24,7 +24,10 @@ Variable::Variable(){
 //******************************************************************************
 Variable::Variable(std::string & line){
 
-    Variable();
+    sum_of_unsigned_integers = new unsigned int;
+    * sum_of_unsigned_integers = 0;
+    isVariableNameSet = false;
+    dependencies = new std::unordered_set<std::string>;
     tokenizer(line);
     parseTokens();
 
