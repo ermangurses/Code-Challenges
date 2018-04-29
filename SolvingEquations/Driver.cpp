@@ -59,11 +59,12 @@ unsigned int solve (map<string,Variable>::iterator variable, map<string,Variable
     if( dependency_iterator->second.isDependencySetEmpty() ){
 
         variable->second.addValue(dependency_iterator->second.getTotalValue());
-     } else {
+
+    } else {
 
         variable->second.addValue(solve(dependency_iterator,variableSet));
-     }
-     return variable->second.getTotalValue();
+    }
+    return variable->second.getTotalValue();
 }
 
 

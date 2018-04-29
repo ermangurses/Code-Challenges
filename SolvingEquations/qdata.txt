@@ -1,6 +1,10 @@
 aaa = bbb + ddd + 10
-bbb = ccc + ddd + 10
+ggg = bbb + ccc + 10 + ddd + hhh
+bbb = ccc + ddd + 10 + eee
 ccc = ddd + 10
 ddd = eee + 10
 eee = fff + 10
 fff = 10
+hhh = 10 + fff
+iii = bbb + ccc + 10 + ddd + hhh + fff + jjj
+jjj = 10
