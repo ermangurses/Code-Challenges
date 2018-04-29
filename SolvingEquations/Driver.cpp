@@ -50,20 +50,20 @@ int main(int argc, char *argv[]){
  return 0;
 }
 
-unsigned int solve (map<string,Variable>::iterator var, map<string,Variable> & variableSet){
+unsigned int solve (map<string,Variable>::iterator variable, map<string,Variable> & variableSet){
 
     string dependency_name;
-    var->second.getDependency(dependency_name);
-    std::map<string,Variable>::iterator  dependencyIt = variableSet.find(dependency_name);     
+    variable->second.getDependency(dependency_name);
+    std::map<string,Variable>::iterator  dependency_iterator = variableSet.find(dependency_name);     
     
-    if( dependencyIt->second.isDependencySetEmpty() ){
+    if( dependency_iterator->second.isDependencySetEmpty() ){
 
-        var->second.addValue(dependencyIt->second.getTotalValue());
+        variable->second.addValue(dependency_iterator->second.getTotalValue());
      } else {
 
-        var->second.addValue(solve(dependencyIt,variableSet));
+        variable->second.addValue(solve(dependency_iterator,variableSet));
      }
-     return var->second.getTotalValue();
+     return variable->second.getTotalValue();
 }
 
 
