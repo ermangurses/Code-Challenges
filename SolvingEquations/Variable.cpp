@@ -196,8 +196,9 @@ bool Variable::removeDependency(std::string & dependency_name){
 bool Variable::printDependencies(){
 
     for (const auto & element: *dependencies) {
-        std::cout<<element<<"\n";
+        std::cout<<element<<"   ";
     }
+    std::cout<<std::endl;
   return true;
 }
 
