@@ -90,7 +90,8 @@ int rankNodes(int pos, int n, vector<vector<int>> & tree,  vector<int> & ranks) 
         if( tree[pos][1] == tree[i][0] ){
 
             flag = true;
-            ranks[i] += 1 + rankNodes(i,n,tree,ranks);
+            ranks[pos] = 1 + rankNodes(i,n,tree,ranks);
+            return ranks[pos];
         }
     }
 
