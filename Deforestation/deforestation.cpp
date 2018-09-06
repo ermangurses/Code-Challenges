@@ -75,20 +75,35 @@ void getEdges(int n, vector<vector<int>> & tree, ifstream & inFile){
         }
     }
 }
-
 /******************************************************************************
   *** void getEdges(int n, vector<vector<int>> tree) ***
   
   takes the edges given as input
                        
 ******************************************************************************/
-string deforestation(int n, vector<vector<int>> tree) {
-    
+int rankNodes(int pos, int n, vector<vector<int>> & tree,  vector<int> & ranks) {
 
+    bool flag = false;
+    int rank = 0;
+    for(int i = pos + 1; i < (n-1); ++i){
 
+        if( tree[pos][1] == tree[i][0] ){
 
-    rankNodesWrapper(n,tree,ranks);
-  
+            flag = true;
+            ranks[i] += 1 + rankNodes(i,n,tree,ranks);
+        }
+    }
+
+    if(!flag){
+
+        rank = 1; 
+        ranks[pos] = rank;
+        if( (pos+1) < (n-1) ){   
+            rankNodes(pos+1,n,tree,ranks);
+        }
+        return rank;
+    }
+    return 0;
 }
 
 /******************************************************************************
@@ -98,8 +113,8 @@ string deforestation(int n, vector<vector<int>> tree) {
                        
 ******************************************************************************/
 void rankNodesWrapper(int n, vector<vector<int>> & tree,  vector<int> & ranks) {
- 
-    int pos = 0; 
+
+    int pos = 0;
     rankNodes(pos,n,tree,ranks);
 
 }
@@ -110,20 +125,21 @@ void rankNodesWrapper(int n, vector<vector<int>> & tree,  vector<int> & ranks) {
   takes the edges given as input
                        
 ******************************************************************************/
-int rankNodes(int pos, int n, vector<vector<int>> & tree,  vector<int> & ranks) {
+string deforestation(int n, vector<vector<int>> tree) {
     
-    for(int i = 0; i < (n-1); ++i){
 
-        if(i != pos){
+    vector<int> ranks (n-1);
 
-            if( tree[pos][1] == tree[i][0] ){
+    rankNodesWrapper(n,tree,ranks);
 
-                rankNodes(i,n,tree,ranks);
+    for(auto i: ranks){
 
-            }
-        }
-    }       
+        cout<<i<<endl;
+    }
+  
+    return "hello"; 
 }
+
 
 /******************************************************************************
   *** int main() ***
@@ -146,6 +162,8 @@ int main(){
 
     getEdges(n,tree,inFile); 
     printEdges(n,tree);
+  
+  string str =    deforestation(n,tree);
     
     return 0;
 }
