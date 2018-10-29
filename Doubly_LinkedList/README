@@ -1,0 +1,6 @@
+To compile:
+	make <ENTER>
+To run:
+	./driver <ENTER>
+To clean:
+	make clean <ENTER>	
