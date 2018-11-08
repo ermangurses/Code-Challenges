@@ -9,7 +9,7 @@
 public class E164Format{
 
     private String number;
-    
+    private String regex = "^\+?[1-9]\d{1,14}$"; 
     // Default constructor 
     public E164Format(){
         this("");
@@ -29,11 +29,10 @@ public class E164Format{
 
     }
 
-    // setNumber Method
-    public void validateNumber( String number ){
+    // validateNumber Method
+    private boolean validateNumber(){
 
-        this.number = number;
-    
+        return this.number.matches(regex);
     }
     
    
