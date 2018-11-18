@@ -1,5 +1,6 @@
 JFLAGS = -g
-JC = javac
+JC = javac -sourcepath . -classpath lib/*.jar 
+
 .SUFFIXES: .java .class
 .java.class:
 	$(JC) $(JFLAGS) $*.java
@@ -11,6 +12,9 @@ CLASSES = \
 default: classes
 
 classes: $(CLASSES:.java=.class)
+
+run:
+	java -cp .:lib/libphonenumber-8.9.9.jar E164FormatTest
 
 clean:
 	$(RM) *.class
