@@ -153,5 +153,18 @@ int main(){
   /////////////////////////////////////////
   cout<<endl<<endl;  
 
+  /******************************************************************************
+
+   print linked list recursively reverse order
+ 
+  ******************************************************************************/
+
+  cout<<"\n\n\n**** Print Linked List Recursively Reverse Order ****\n\n\n"<<endl;
+  cout<<"Size of "<<linkedListRec->sizeOf()<<endl;
+
+  /////////////////////////////////////////
+  linkedListRec->printLinkedListRecursivelyReverse();
+  /////////////////////////////////////////
+
  return 0;
 }

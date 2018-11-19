@@ -223,10 +223,11 @@ void LinkedList<T>::printLinkedList(){
         }
     }
 }
+
 /******************************************************************************
 //
 //
-// PrintLinkedListReqursively
+// printLinkedListReqursively
 //
 //
 *******************************************************************************/
@@ -258,6 +259,44 @@ void LinkedList<T>::printRecursively(Node * head){
     } else {
         cout<<head->dataIn<<endl;
         printRecursively(head->next);
+    }
+}
+
+/******************************************************************************
+//
+//
+// printLinkedListReqursivelyReverse
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::printLinkedListRecursivelyReverse(){
+
+    if(head == nullptr){
+
+        cout<<"LinkedList is empty!"<<endl;
+        return;
+    }else{
+        printRecursivelyReverse(head);
+    }
+}
+
+/******************************************************************************
+//
+//
+// printRecursivelyReverse
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::printRecursivelyReverse(Node * head){
+
+    if(head == nullptr){
+        return;
+
+    } else {
+        printRecursivelyReverse(head->next);
+        cout<<head->dataIn<<endl;
     }
 }
 

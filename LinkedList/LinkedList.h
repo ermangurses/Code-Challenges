@@ -33,6 +33,8 @@ class LinkedList{
         void   printLinkedList();                    // Print the entire LinkedList
         void   printLinkedListRecursively();         // Print the entire LinkedList recursively
         void   printRecursively(Node * head);        // Helper function of printLinkedListReqursively
+        void   printLinkedListRecursivelyReverse();  // Print the entire LinkedList recursively in reverse order
+        void   printRecursivelyReverse(Node * head); // Helper function of printLinkedListReqursivelyReverse
         void   removeOld(T dataOut);                 // Remove specific data
         void   remove(T dataOut);                    // Remove specific data
         bool   searchOld(T dataSearch);              // Search linkedList
