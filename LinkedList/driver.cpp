@@ -129,7 +129,29 @@ int main(){
   }
   linkedList->printLinkedList();
    
+  /******************************************************************************
 
+   print linked list recursively  
+ 
+  ******************************************************************************/
   
+  LinkedList<int> * linkedListRec = new LinkedList<int>();  
+
+  cout<<"\n\n\n**** Print Linked List Recursively ****\n\n\n"<<endl;  
+
+  int arrayRec[SIZE] = {6,1,1,2,0,3,5,4,5,6,9,7,11,10,8,10,11,3,4,0};
+
+  for(int i = 0; i < SIZE; i++){
+
+      cout<<i<<": "<<arrayRec[i]<<"---> is added to the linked list"<<endl;
+      linkedListRec->insertInOrder(arrayRec[i]);
+  }
+  cout<<endl<<endl;
+  cout<<"Size of "<<linkedListRec->sizeOf()<<endl;
+  /////////////////////////////////////////
+  linkedListRec->printLinkedListRecursively();
+  /////////////////////////////////////////
+  cout<<endl<<endl;  
+
  return 0;
 }

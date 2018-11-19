@@ -223,7 +223,43 @@ void LinkedList<T>::printLinkedList(){
         }
     }
 }
+/******************************************************************************
+//
+//
+// PrintLinkedListReqursively
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::printLinkedListRecursively(){
 
+    if(head == nullptr){
+
+        cout<<"LinkedList is empty!"<<endl;
+        return;
+    }else{
+        printRecursively(head);
+    }
+}
+
+/******************************************************************************
+//
+//
+// printRecursively
+//
+//
+*******************************************************************************/
+template<class T>
+void LinkedList<T>::printRecursively(Node * head){
+
+    if(head == nullptr){
+        return;
+
+    } else {
+        cout<<head->dataIn<<endl;
+        printRecursively(head->next);
+    }
+}
 
 /******************************************************************************
 //
