@@ -13,14 +13,17 @@ cd path-to-directroy/E164Format
 
 ** How to compile **
 
-make clean<ENTER>
 make <ENTER>
 
 ** How to run **
 
 make run<ENTER>
 
-**** Description ***
+** How to remove executables **
+
+make clean<ENTER>
+
+**** Description ****
 
 In this code, we have two files: E164Format (implementation)
 and E164FormatTest (driver)
