@@ -3,14 +3,25 @@
 This program is develop in Unix environment.
 Please use command line interface to compile and run the commands below:
 
+** Before Compile **
+
+After, unzip the file;
+First, go to under the directory called E164Format using command line
+
+The example command to go to the directory is below:
+cd path-to-directroy/E164Format
+
 ** How to compile **
+
 make clean<ENTER>
 make <ENTER>
 
 ** How to run **
+
 make run<ENTER>
 
 **** Description ***
+
 In this code, we have two files: E164Format (implementation)
 and E164FormatTest (driver)
 
