@@ -1,5 +1,8 @@
 **** README ****
 
+This program is develop in Unix environment.
+Please use command line interface to compile and run the commands below:
+
 ** How to compile **
 make clean<ENTER>
 make <ENTER>
