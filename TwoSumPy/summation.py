@@ -1,4 +1,18 @@
+###########################################################
+#
+#
+#  Summation Class
+#
+#
+###########################################################
+
+
 class Summation:
+
+    # twoSum takes array and target value to find two 
+    # numbers that summation of them equals to target
+    # It is implemented using hash so complexity is
+    # O(n)
     def twoSum(self, nums, target):
         """
         :type nums: List[int]
