@@ -108,7 +108,7 @@ unsigned int solve (map<string,Variable>::iterator variable, map<string,Variable
             cout<<"Dependency Value: "<<dependency_iterator->second.getTotalValue()<<endl;
             cout<<endl;
 
-  while ( !(dependency_iterator->second.isDependencySetEmpty()) ){
+  if ( !(dependency_iterator->second.isDependencySetEmpty()) ){
   count++;
         //////////////////////////////////////////////////////////////////////
         variable->second.addValue(solve(dependency_iterator,variableSet,count));
