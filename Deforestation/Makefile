@@ -1,5 +1,5 @@
 CXX=g++
-FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic
+FLAGS=-std=c++11 -stdlib=libc++ -Wall -Wpedantic -g
 
 all: driver.o
 	$(CXX) $(FLAGS) driver.o -o driver
