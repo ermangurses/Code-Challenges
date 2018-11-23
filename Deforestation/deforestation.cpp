@@ -91,7 +91,7 @@ int rankNodes(int pos, int n, vector<vector<int>> & tree,  vector<int> & ranks) 
 
             flag = true;
             ranks[pos] = 1 + rankNodes(i,n,tree,ranks);
-            return ranks[pos];
+//            return ranks[pos];
         }
     }
 
