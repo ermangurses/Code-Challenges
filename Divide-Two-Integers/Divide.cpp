@@ -2,9 +2,9 @@
 #include <math.h> 
 #include <vector>
 
+#define MAX 2147483648 
+
 using namespace std;
-
-
 /******************************************************************************
 //
 //
@@ -13,9 +13,7 @@ using namespace std;
 //
 *******************************************************************************/
 
-Divide::Divide(){
-
-}
+Divide::Divide(){}
 
 /******************************************************************************
 //
@@ -25,14 +23,16 @@ Divide::Divide(){
 //
 *******************************************************************************/
 long int Divide::divide_integer(int dividend, int divisor){
-         
-        bool flag = false;
+
+
+   
+         bool flagDifferentSigns = false;
 
          if(divisor == 0)
             exit(0);
 
          if( (dividend < 0) ^ (divisor < 0) )
-             flag = true;
+             flagDifferentSigns = true;
 
          if(divisor == 1)
          {
@@ -41,32 +41,39 @@ long int Divide::divide_integer(int dividend, int divisor){
          else if(divisor == -1)
          {
 
-             if(dividend == -2147483648)
+             if(dividend == -MAX)
                  return 2147483647;
              else
-                 return -1*dividend;
+                 return -dividend;
 
          }
-         
-         int specialCase = 0;
-         if(dividend == -2147483648)
+         else if(divisor == -MAX)
          {
              
+            if(dividend == -MAX)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+         }   
+         
+         bool flagIntNegativeMax = false;
+         
+         if(dividend == -MAX)
+         {
              if(divisor < 0)
              {
-                 
                  dividend = dividend - divisor;
-                 
              }
              else if (divisor > 0)
              {
                  dividend = dividend + divisor;
-                 
              }
-             flag1 = true;
+             flagIntNegativeMax = true;
          }
-         
-         
          if(dividend < 0)
          {
              dividend = -dividend;
@@ -79,7 +86,7 @@ long int Divide::divide_integer(int dividend, int divisor){
          
          if (divisor == dividend)
          {
-             if(flag)
+             if(flagDifferentSigns)
              {
                  return -1;
              }
@@ -89,82 +96,38 @@ long int Divide::divide_integer(int dividend, int divisor){
              }
          }
          
-         long long int temp = divisor;
+         long int temp = divisor;
          int total = 0;
          int resudial = dividend;
          int result = 1;
          int totalResult = 0;
-        
-         cout << "\nTotal before: "<< total<<endl;
-         cout << "Divisor before: "<< divisor<<endl;
-         cout << "Resudial before: "<< resudial<<endl;
-         cout << "Temp before: "<< temp <<endl;         
-         
+
          while (resudial >= divisor)
          {
              temp = divisor;
              result = 1;
              while (temp <= resudial)
              {
-                 
-                 cout << "\nTotal in: "<< total<<endl;
-                 cout << "Divisor in: "<< divisor<<endl;
-                 cout << "Resudial in: "<< resudial<<endl;
-                 cout << "Temp in: "<< temp <<endl;                 
-
                  temp =  temp<<1;
                  result = result<<1;
-
              }
-
              temp = temp>>1;
              total += temp;
              resudial -= temp;
              totalResult += result>>1;
 
          }
-
-         cout << "\nTotal out: "<< total<<endl;
-         cout << "Divisor out: "<< divisor<<endl;
-         cout << "Resudial out: "<< resudial<<endl;
-         cout << "Temp out: "<< temp <<endl;
          
-	 cout <<"flag1 "<< flag1 << endl;
-	 cout<< "flag  "<< flag  << endl;
-
-
-         if(flag1)
+         if(flagIntNegativeMax)
          {
-             if(flag) //pos
-             {
-                totalResult++;
-		//
-		//
-
-		cout<<"I am here!!"<< endl;
-             }
-             else //neg
-             {
-               totalResult--;
-	       //
-	       //
-
-	       cout<<"I am here!!!"<<endl;
-             }
-             
-             
+             totalResult++;
+     
          }
 
-         if(flag)
+         if(flagDifferentSigns)
          {
-             
-             totalResult = -totalResult;
-             
+             totalResult = -totalResult; 
          }
          
          return totalResult;
-    
-         
-    
-
 }
